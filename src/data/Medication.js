@@ -1,3 +1,6 @@
+//separate file to encapsulate all API-related logic
+//file will serve as API service or wrapper
+
 import axios from "axios";
 
 const API_KEY = "rTFoxUO4tQqvxskfFuTEl3Iu3jj0KPQVpMkRsqQ7";
