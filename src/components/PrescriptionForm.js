@@ -13,9 +13,7 @@ function PrescriptionForm() {
     //clear the form or perform other necessary actions
 
 
-    return (
-
-    )
+    return 
 }
 
 
