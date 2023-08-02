@@ -1,4 +1,4 @@
-
+import { v4 as uuidv4 } from "uuid";
 
 //function to get all prescriptions from local storage
 export const getAllPrescriptions = () => {
@@ -9,6 +9,7 @@ export const getAllPrescriptions = () => {
 //function to add a new prescription
 export const addPrescription = (newPrescription) => {
     const prescriptions = getAllPrescriptions();
+    newPrescription.id = uuidv4();     //generates a unique ID for the new prescription added
     prescriptions.push(newPrescription);
     localStorage.setItem("prescriptions", JSON.stringify(prescriptions));
 }
