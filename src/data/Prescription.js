@@ -1,4 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
+import React from "react";
+
 
 //function to get all prescriptions from local storage
 export const getAllPrescriptions = () => {
@@ -41,3 +43,5 @@ function to add new prescription in local storage,
 function to update an existing prescription in local storage,
 function to delete a prescription from local storage,
 implementing IDs for prescriptions with npm install uuid*/
+
+//To utilize data functions in my application, I will import the functions from prescriptions.js to interact with local storage data to components (prescription form, etc) 
