@@ -7,9 +7,9 @@ function App() {
     <Router>
       {/*components and routes*/}
       <Routes>
-        <Route path='/' Component={Dashboard} />
-        <Route path='/patients' Component={PatientProfiles} />
-        <Route path='/prescriptions' Component={Medications} />
+        <Route path='/' element={<Dashboard />} />
+        <Route path='/patients' element={<PatientProfiles />} />
+        <Route path='/prescriptions' element={<Medications />} />
       </Routes>
     </Router>
   );
