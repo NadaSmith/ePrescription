@@ -1,0 +1,1 @@
+//Dashboard will contain most of the components here: footer, header, medication history, prescription form, inactive and active meds, and drug allergy
