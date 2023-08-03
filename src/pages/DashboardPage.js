@@ -9,18 +9,16 @@ function DashboardPage()  {
 
     useEffect(() => {
         //fetch medication data from OpenFDA API and update the state; but will focus on local storage functionality right now.
-        const fetchMedicationData = async () => {
-            try {
-                const response = await fetch("YOUR_OPENFDA_API_ENDPOINT");
-                if (!response.ok) {
-                    throw new Error("Failed to fetch data");
-                }
-                const data = await response.json();
-                setMedicationData(data.results);   //assuming the medicaton data is in the results property
-            }   catch (error) {
-                console.error("Error fetching medication data:", error);
+        const fetchMedicationData = () => {
+            const storedData = localStorage.getItem("medicatonData");
+            if (storedData) {
+                return JSON.parse(storedData);
+            } else {
+                return [];    //return an empty arry if no daya found
             }
         };
+
+        const medicationData = fetchMedicationData();
 
         fetchMedicationData();
     }, []);

@@ -2,14 +2,33 @@ import React from "react";
 
 function PendingMedication() {
     //fetch pending medication data (from local storage or API)
+    function fetchPendingMeidcationData() {
+        if (storedData) {
+            return JSON.parse(storedData);
+        } else {
+            return [];   //return an empty arra if no data found
+        }
+    };
 
+    const pendingMedicationData = fetchPendingMeidcationData();
+
+    //function to handle edit medication
     function handleEditMedication(medicationID) {
         //redirect to "Add Prescription" page with medicationId as a URL parameter
+        //use history.push method
     }
 
+    //function to handle delete medication
     function handleDeleteMedication(medicationId) {
-        //delete message and then show message confirming deletion
-    }
+        //show a confirmation message and then remove the medication from the list
+        const updatedPendingMedicationData = pendingMedicationData.filter(
+            (medication) => medication.id !== medicationId
+        );
+        //update the local storage with the updated list
+        localStorage.setItem(
+            "pendingMedications", JSON.stringify(updatedPendingMedicationData)
+        );
+    };
 
     return (
         <div>

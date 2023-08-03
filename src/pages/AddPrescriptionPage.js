@@ -1,76 +1,84 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 const AddPrescriptionPage = () => {
     //sample state to hold patient's med info
-    const [medication, setMedication] = useState(null);
+    const [medicationName, setMedicationName] = useState("");
+    //add other prescription form fields as needed
 
-    //function to fetch medication data from an external API
-    const fetchMedicationData = async () => {
-        try {
-            const response = await fetch('API_ENDPOINT')    //replace with my endpoint
-            if (!response.ok) {
-                throw new Error('Failed to fetch');
-            }
-            const data = await response.json();
-            setMedication(data);
-        }   catch (error) {
-            console.error('Error fecthcing medication data:', error);
-        }
-    };
+    //function to handle form submission
+    const handleSubmit = (e) => {
+        e.preventDefault();
 
-    //useEffect hook to fetch medication data when the componenet mounts
-    useEffect(() => {
-        fetchMedicationData();
-    }, []);
+        //create a new prescription objecgt with form data
+        const newPrescription = {
+            medicationName,
+            //add other prescription properties here
+        };
+
+        //get existing prescription data from local storage or iniatialize an empty array
+        const existingPrescriptions = JSON.parse(localStorage.getItem("prescription")) || [];
+
+        //add the new rescriptno to the existing prescription array
+        const updatedPrescriptions = [...existingPrescriptions, newPrescription];
+
+        //store the updated prescriptions in local stoarge
+        localStorage.setItem("prescriptions", JSON.stringify(updatedPrescriptions));
+
+        //clear the form fields after successful submission
+        setMedicationName("");
+
+        //clear other fields as needed
+    }
 
     return (
         <div>
-            <h2 className="first-bar">Add Prescription</h2>
+            <h1 className="first-bar">Add Prescription</h1>
 
             <div className="second-bar">
                 <button className="clicked-button">Medication</button>
-                <button>Supply</button>
-                <button>Compound</button>
+                <h2>Supply</h2>
+                <h2>Compound</h2>
             </div>
 
-            <div className="third-bar">
-                <label>Search for a Diagnosis by name or ICD10 to select it.</label>
-                <input></input>
-            </div>
+            <form onSubmit={handleSubmit}>
+                <div className="third-bar">
+                    <label>Search for a Diagnosis by name or ICD10 to select it.</label>
+                    <input type="text"  placeholder="Diagnosis"></input>
+                </div>
 
-            <div className="fourth-bar">
-                <label>Search for a medication by name, then click the meidcation name to select it.</label>
-                <input></input>
-            </div>
+                <div className="fourth-bar">
+                    <label>Search for a medication by name, then click the meidcation name to select it.</label>
+                    <input type="text" value={medicationName} onChange={(e) => setMedicationName(e.target.value)} placeholder="Medication Name" required></input>
+                </div>
 
-            <div className="fifth-bar">
-                
-            </div>
+                <div className="fifth-bar">
+                    
+                </div>
 
-            <div className="sixth-bar">
-                
-            </div>
+                <div className="sixth-bar">
+                    
+                </div>
 
-            <div className="seventh-bar">
-                
-            </div>
+                <div className="seventh-bar">
+                    
+                </div>
 
-            <div className="eigth-bar">
-                
-            </div>
+                <div className="eigth-bar">
+                    
+                </div>
 
-            <div className="ninth-bar">
-                
-            </div>
+                <div className="ninth-bar">
+                    
+                </div>
 
-            <div className="tenth-bar">
-                
-            </div>
+                <div className="tenth-bar">
+                    
+                </div>
 
-            <div className="eleventh-bar">
-                
-            </div>
-
+                <div className="eleventh-bar">
+                    <button type="submit">Save Prescription</button>
+                </div>
+            </form>
 
 
             

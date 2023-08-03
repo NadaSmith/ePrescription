@@ -1,8 +1,8 @@
-import react, { useState, useEffect } from "react";
+import react, { useState, useHistory } from "react";
 
-const MedicationStength = ({ medicationData }) => {
+const MedicationStrength = ({ medicationData }) => {
     const [selectedOption, setSelectedOption] = useState('');
-    const history = useHistory();     //initalize useHistory hook
+    const history = useHistory();     
 
     const handleChange = (event) => {
         setSelectedOption(event.target.value);
