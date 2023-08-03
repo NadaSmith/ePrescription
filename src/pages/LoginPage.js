@@ -1,15 +1,21 @@
+import { useHistory } from "react-router-dom";
 import React from "react";
-import { Link } from "react-router-dom";
 import './LoginPage.css';
 
 
 function LoginPage() {
+    const history = useHistory();
+
+    function handleLogin() {
+        history.push('/patient-list');
+    }
+
     return (
         <div>
             {/*add the button to navigate to PatientListPage*/}
-            <Link to="/patientlistpage">
-                <button>Log in</button>
-            </Link>
+            <h1>Login Page</h1>
+            <button onClick={handleLogin}>Log in</button>
+           
         </div>
     );
 }

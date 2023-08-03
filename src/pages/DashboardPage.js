@@ -1,10 +1,31 @@
 //Dashboard will contain most of the components here: footer, header, medication history, prescription form, inactive and active meds, and drug allergy
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useParams } from "react-router-dom";
 
 
 //place to store all dashboard components
 function DashboardPage()  {
+    const { patientId } = useParams();         //get the patientID from the URL parameter
+
+    useEffect(() => {
+        //fetch medication data from OpenFDA API and update the state; but will focus on local storage functionality right now.
+        const fetchMedicationData = async () => {
+            try {
+                const response = await fetch("YOUR_OPENFDA_API_ENDPOINT");
+                if (!response.ok) {
+                    throw new Error("Failed to fetch data");
+                }
+                const data = await response.json();
+                setMedicationData(data.results);   //assuming the medicaton data is in the results property
+            }   catch (error) {
+                console.error("Error fetching medication data:", error);
+            }
+        };
+
+        fetchMedicationData();
+    }, []);
+
+
     return (
         <div>
             <header>
