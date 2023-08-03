@@ -1,6 +1,8 @@
 //Dashboard will contain most of the components here: footer, header, medication history, prescription form, inactive and active meds, and drug allergy
+import React from "react";
+import { Link } from "react-router-dom";
 
-export const Dashboard = () => {
+function DashboardPage()  {
     return (
         <div>
             <header>
@@ -43,7 +45,7 @@ export const Dashboard = () => {
             <div className="add-medication">
 
             </div>
-            {/*table of pending meds*/}
+            {/*table of pending meds; in table add link to add prescription button*/}
             <div className="Pending medications">
 
             </div>
@@ -51,6 +53,6 @@ export const Dashboard = () => {
     );
 }
 
-
+export default DashboardPage;
 
 //these will be links

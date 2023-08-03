@@ -1,5 +1,7 @@
+import React from "react";
+import { Link } from "react-router-dom";
 
-export const PatientList = () => {
+function PatientListPage() {
     return (
         <div>
             <form>
@@ -21,6 +23,7 @@ export const PatientList = () => {
     );
 }
 
+export default PatientListPage;
 
 
 

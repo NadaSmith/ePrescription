@@ -1,23 +1,21 @@
 import './App.css';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
-import Dashboard from './pages/Dashboard';
-import Login from './components/Login';
-import PatientList from './pages/PatientList';
+import DashboardPage from './pages/DashboardPage';
+import LoginPage from './pages/LoginPage';
+import PatientListPage from './pages/PatientListPage';
+import AddPrescriptionPage from './pages/AddPrescriptionPage';
 
 
 
 function App() {
   return (
     <Router>
-      
-      <Login />
-
       {/*components and routes*/}
       <Routes>
-        <Route path='/' element={<Login />} />
-        <Route path='/pages/patientlist' element={<PatientList />} />
-        <Route path='/pages/dashboard' element={<Dashboard />} />
-        <Route path='/pages/addprescription' element={<AddPrescription />} />
+        <Route path='/' element={<LoginPage />} />
+        <Route path='/patientlistpage' element={<PatientListPage />} />
+        <Route path='/dashboardpage' element={<DashboardPage />} />
+        <Route path='/addprescriptionpage' element={<AddPrescriptionPage />} />
       </Routes>
     </Router>
   );
