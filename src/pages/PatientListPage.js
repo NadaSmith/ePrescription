@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function PatientListPage() {
     const [patientData, setPatientData] = useState([]);
     const [searchValue, setSearchValue] = useState('');
-    const history = useHistory();
+    const navigate = useNavigate();
 
     //fetch patient data from local storage during component mount
     useEffect(() => {
@@ -27,7 +27,7 @@ function PatientListPage() {
 
     function handleViewPatient(patientID) {
         //redirect tot he dashboard page, pass the pt ID as a URL parameter
-        history.push(`/dashboard/${patientID}`);
+        navigate(`/dashboard/${patientID}`);
     }
     
     return (

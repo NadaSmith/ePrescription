@@ -1,13 +1,13 @@
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import React from "react";
 import './LoginPage.css';
 
 
 function LoginPage() {
-    const history = useHistory();
+    const navigate = useNavigate();
 
     function handleLogin() {
-        history.push('/patient-list');
+        navigate('/patient-list');
     }
 
     return (
