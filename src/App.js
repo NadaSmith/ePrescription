@@ -1,20 +1,23 @@
 import './App.css';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import Dashboard from './pages/Dashboard';
-import PatientProfiles from './pages/Dashboard';
-import PatientMedicalHistory from './pages/PatientMedicalHistory';
-import 
+import Login from './components/Login';
+import PatientList from './pages/PatientList';
+
 
 
 function App() {
   return (
     <Router>
+      
+      <Login />
+
       {/*components and routes*/}
       <Routes>
-        <Route path='/' element={<Dashboard />} />
-        <Route path='/patients' element={<PatientProfiles />} />
-        <Route path='/prescriptions' element={<Medications />} />
-        <Route path='/prescriptions' element={<Medications />} />
+        <Route path='/' element={<Login />} />
+        <Route path='/pages/patientlist' element={<PatientList />} />
+        <Route path='/pages/dashboard' element={<Dashboard />} />
+        <Route path='/pages/addprescription' element={<AddPrescription />} />
       </Routes>
     </Router>
   );
