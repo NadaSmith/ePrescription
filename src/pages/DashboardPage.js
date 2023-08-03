@@ -2,6 +2,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+
+//place to store all dashboard components
 function DashboardPage()  {
     return (
         <div>

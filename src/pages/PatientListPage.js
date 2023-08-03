@@ -2,6 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 function PatientListPage() {
+
+    //list of patients' name, age, gender, birth date, and view button here
+    const patients = ['John Doe', 'Jane Smith';]
+
     return (
         <div>
             <form>

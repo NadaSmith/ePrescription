@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-const addPrescriptionPage = () => {
+const AddPrescriptionPage = () => {
     //sample state to hold patient's med info
     const [patient, setPatient] = useState({
         name: 'Ibuprofen',
@@ -37,4 +37,4 @@ const addPrescriptionPage = () => {
     );
 }
 
-export default addPrescriptionPage;
+export default AddPrescriptionPage;

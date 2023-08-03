@@ -1,5 +1,5 @@
 import './App.css';
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import DashboardPage from './pages/DashboardPage';
 import LoginPage from './pages/LoginPage';
 import PatientListPage from './pages/PatientListPage';
@@ -10,7 +10,7 @@ import AddPrescriptionPage from './pages/AddPrescriptionPage';
 function App() {
   return (
     <Router>
-      {/*components and routes*/}
+      {/*defines routes*/}
       <Routes>
         <Route path='/' element={<LoginPage />} />
         <Route path='/patientlistpage' element={<PatientListPage />} />
