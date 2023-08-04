@@ -1,0 +1,30 @@
+.insurance-component {
+    border: black solid;
+    width: 400px;
+    height: 200;
+}
+
+.insurance {
+    background-color: white;
+    height: 150px;
+    width: 300px;
+    display: flex;
+    flex-direction: row;
+}
+
+.insurance img {
+    width: 20px;
+    height: 20px;
+    margin-top: 20px;
+}
+
+.coverage-details img {
+    width: 200px;
+    height: 200px;
+
+}
+
+.insurance h1 {
+    color: black;
+    font-weight: lighter;
+}

@@ -6,6 +6,9 @@ import NameBanner from "../components/NameBanner";
 import PatientInfo from "../components/PatientInfo";
 import OfficeName from "../components/OfficeName";
 import "./DashboardPage.css";
+import Insurance from "../components/Insurance";
+import AddPrescription from "../components/AddPrescription";
+import AddPatientReported from "../components/AddPatientReported";
 
 
 
@@ -31,14 +34,28 @@ function DashboardPage()  {
 
 
     return (
-        <div>
+        <div className="dashboard-page">
             <Header />
 
             <NameBanner />
 
             <OfficeName />
 
-            <PatientInfo />
+            <hr></hr>
+
+            <div className="gray-section">
+                <PatientInfo />
+
+                <Insurance />
+
+                <div className="add-prescription-button">
+                    <AddPrescription />
+
+                    <AddPatientReported />
+                </div>
+
+            </div>
+            
             
             
             <div className="patient-info-section">

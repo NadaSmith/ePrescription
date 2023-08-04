@@ -1,22 +1,20 @@
 import React from "react";
+import add from "../images/add.png";
+import insurance_pic from "../images/insurance_pic.png"
+import "./Insurance.css";
 
 function Insurance() {
     return(
-        <div>
-            <div>
+        <div className="insurance-component">
+            <div className="insurance">
                 <h1>Coverage Details</h1>
-                <button></button>
+                <img src={add}></img>
             </div>
-
-            <form>
-                <label>plan:</label>
-                <select>
-                    <option value={PBMA}>PBMA</option>
-                    <option value={Aetna}>Aetna</option>
-                    <option value={UnitedHealthcare}>UnitedHealthcare</option>
-                    <option value={Medicaid}>Medicaid</option>
-                </select>
-            </form>
+            <div className="coverage-details">
+                <img src={insurance_pic}></img>
+            </div>
+            
+            
         </div>
     );
 }

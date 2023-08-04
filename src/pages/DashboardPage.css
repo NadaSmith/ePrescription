@@ -1,3 +1,13 @@
 .gray-section {
     background-color: gray;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
+
+.add-prescription-button {
+    background-color: gray;
+
+}
+
+

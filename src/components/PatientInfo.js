@@ -11,12 +11,12 @@ function PatientInfo() {
             </div>
 
             <div className="bottom">
-                <button>Add/Edit Drug Allergies</button>
-                <button>Add/Edit Pharmacies</button>
+                <button className="drug">Add/Edit Drug Allergies</button>
+                <button className="pharm">Add/Edit Pharmacies</button>
             </div>
 
         </div>
-    );
+    ); 
 }
 
 export default PatientInfo;
