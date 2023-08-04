@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import NameBanner from "../components/NameBanner";
+import "./PatientListPage.css";
 
 function PatientListPage() {
     const [patientData, setPatientData] = useState([]);
@@ -38,38 +39,42 @@ function PatientListPage() {
 
             <NameBanner />
 
-            <h2>Find A Patient</h2>
+            <h2 className="find-a-patient">Find A Patient</h2>
 
-            <form>
+            <form className="search-patient">
                 <input type="text" value={searchValue} onChange={(e) => setSearchValue(e.target.value)} />
                 <button onClick={{handleSearch}}>Search</button>
-                <h2>Show Recent Patients</h2>
+                <p>Show Recent Patients</p>
             </form>
 
-            <div>
+            <div className="recent-patient">
                 <h2>My Recent Patients</h2>
                 <button>Add New Patient</button>
             </div>
 
             {/*place table with 5 rows (Name, Age, Gender, Birth Date, row for button)*/}
-            <table>
+            <table className="table">
                 <thead>
                     <tr>
                         <th>Name</th>
                         <th>Age</th>
                         <th>Gender</th>
                         <th>Birth Date</th>
-                        <th></th>
+                        <th>
+                            <></>
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
                     {patientData.map((patient, index) => (
                         <tr key={index}>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td>{patient.name}</td>
+                            <td>{patient.age}</td>
+                            <td>{patient.gender}</td>
+                            <td>{patient.birthDate}</td>
+                            <td>
+                                <button onClick={() => handleViewPatient(patient.id)}>View</button>
+                            </td>
                         </tr>
                     ))}
                 </tbody>

@@ -11,7 +11,7 @@ function Header() {
             <div className="header">
                 <h1 className="darkened">Dashbaord</h1>
                 <h1 className="lightened">Patients</h1>
-                <h1 className="lightened">Logout</h1>
+                <h1 className="darkened">Logout</h1>
             </div>
         </header>
     );

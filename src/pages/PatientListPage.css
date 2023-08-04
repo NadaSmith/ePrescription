@@ -1,0 +1,70 @@
+.find-a-patient {
+    font-weight: lighter;
+    font-size: xx-large;
+} 
+
+.search-patient {
+    display: flex;
+    flex-direction: row;
+}
+
+.search-patient input {
+    width: 40%;
+    height: 25px;
+    border: lightgray solid;
+}
+
+.search-patient button {
+    width: 250px;
+    height: 45px;
+    margin-left: 2rem;
+    border-radius: 15px;
+    background-color: orangered;
+    color: white;
+    border: #386890 solid;
+}
+
+.search-patient p {
+    border: #386890 solid;
+    font-weight: lighter;
+    padding: 10px;
+    color: orangered;
+}
+
+.recent-patient h2{
+    font-weight: lighter;
+    font-size: xx-large;
+}
+
+.recent-patient button {
+    width: 250px;
+    height: 45px;
+    border-radius: 15px;
+    background-color: orangered;
+    color: white;
+    border: #386890 solid;
+}
+
+.table {
+    margin-top: 2em;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table th, .table td {
+    border: 1px solid lightgray;
+    padding: 8px;
+}
+
+.table th {
+    background-color: white;
+    font-weight: bolder;
+}
+
+.table tr:nth-child(even) {
+    background-color:lavenderblush;
+}
+
+.table tr:hover {
+    background-color: lightyellow;
+}
