@@ -64,7 +64,7 @@ function DashboardPage()   {
             </div>
 
             <div className="add-medication">
-
+              
             </div>
 
             {/*table of pending meds; in table add link to add prescription button*/}

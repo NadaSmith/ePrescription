@@ -2,11 +2,13 @@
     background-color: lightgray;
 }
 
-h1 {
+.login h1 {
     background-color: #4682b4;
     color: white;
-    text-align: center;
     margin-bottom: 2rem;
+    margin-left: 3rem;
+    width: 400px;
+    text-align: center;
 }
 
 
@@ -87,10 +89,7 @@ input {
     color: white;
 }
 
-Link {
-    background-color: #4682b4;
-    border: solid black;
-}
+
 
 .second-button {
    border: orangered solid;
@@ -101,12 +100,11 @@ Link {
 }
 
 
-
 .login {
     border: solid orangered;
     background-color: #4682b4;
     width: 500px;
     height: 400px;
     margin: auto;
-    margin-top: 15%;
+    margin-top: 10%;
 }

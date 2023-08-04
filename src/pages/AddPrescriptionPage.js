@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import Header from "../components/Header";
+import NameBanner from "../components/NameBanner";
+import OfficeName from "../components/OfficeName";
 
 const AddPrescriptionPage = () => {
     //sample state to hold patient's med info
@@ -32,6 +35,13 @@ const AddPrescriptionPage = () => {
 
     return (
         <div>
+            <Header />
+
+            <NameBanner />
+
+            <OfficeName />
+
+
             <h1 className="first-bar">Add Prescription</h1>
 
             <div className="second-bar">

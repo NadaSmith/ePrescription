@@ -1,4 +1,5 @@
 import React from "react";
+import "./PendingMedication.css";
 
 function PendingMedication() {
     //fetch pending medication data (from local storage or API)

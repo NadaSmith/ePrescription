@@ -42,6 +42,8 @@ function PatientListPage() {
 
             <OfficeName />
 
+            <hr></hr>
+
             <h2 className="find-a-patient">Find A Patient</h2>
 
             <form className="search-patient">
