@@ -9,13 +9,14 @@ import AddPrescriptionPage from './pages/AddPrescriptionPage';
 
 function App() {
   return (
+    
     <Router>
-      <LoginPage />
       {/*defines routes*/}
+
       <Routes>
         <Route path='/' element={<LoginPage />} />
-        <Route path='/patientlistpage' element={<PatientListPage />} />
         <Route path='/dashboardpage' element={<DashboardPage />} />
+        <Route path='/patientlistpage' element={<PatientListPage />} />
         <Route path='/addprescriptionpage' element={<AddPrescriptionPage />} />
       </Routes>
     </Router>

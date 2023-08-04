@@ -83,6 +83,13 @@ input {
     border-radius: 7px;
     margin-bottom: 1rem;
     height: 25px;
+    width: 100%;
+    color: white;
+}
+
+Link {
+    background-color: #4682b4;
+    border: solid black;
 }
 
 .second-button {
