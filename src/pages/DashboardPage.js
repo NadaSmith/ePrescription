@@ -1,6 +1,12 @@
 //Dashboard will contain most of the components here: footer, header, medication history, prescription form, inactive and active meds, and drug allergy
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
+import Header from "../components/Header";
+import NameBanner from "../components/NameBanner";
+import PatientInfo from "../components/PatientInfo";
+import OfficeName from "../components/OfficeName";
+import "./DashboardPage.css";
+
 
 
 //place to store all dashboard components
@@ -26,19 +32,15 @@ function DashboardPage()  {
 
     return (
         <div>
-            <header>
-                <img></img>
-                <h1>DASHBOARD</h1>
-                <h1>PATIENTS</h1>
-            </header>
-            <div>
-                <h1>Welcome username</h1>
-                <img></img>
-                <button></button>
-            </div>
-            <div>
-                <h1>Clinic Name</h1>
-            </div>
+            <Header />
+
+            <NameBanner />
+
+            <OfficeName />
+
+            <PatientInfo />
+            
+            
             <div className="patient-info-section">
                 <div>
                     <h1>Mr Patient's name, sex, age</h1>

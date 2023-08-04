@@ -1,0 +1,14 @@
+.top h1 {
+    border: solid black;
+    font-weight: lighter;
+    color: black;
+}
+
+.patient-info {
+    border: solid black;
+}
+
+.bottom button {
+    background-color: white;
+    color: orangered;
+}

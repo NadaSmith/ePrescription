@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import NameBanner from "../components/NameBanner";
+import OfficeName from "../components/OfficeName";
 import "./PatientListPage.css";
 
 function PatientListPage() {
@@ -38,6 +39,8 @@ function PatientListPage() {
             <Header />
 
             <NameBanner />
+
+            <OfficeName />
 
             <h2 className="find-a-patient">Find A Patient</h2>
 
@@ -87,7 +90,8 @@ function PatientListPage() {
 export default PatientListPage;
 
 
-
+//When click on view button in chart will go to dashboardpage
+//When press search button after inputting will got to dshboardpage
 
 
 
