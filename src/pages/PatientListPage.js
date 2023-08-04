@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
+import NameBanner from "../components/NameBanner";
 
 function PatientListPage() {
     const [patientData, setPatientData] = useState([]);
@@ -34,6 +35,8 @@ function PatientListPage() {
     return (
         <div>
             <Header />
+
+            <NameBanner />
 
             <h2>Find A Patient</h2>
 
