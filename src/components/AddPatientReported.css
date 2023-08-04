@@ -1,0 +1,11 @@
+.add-patient-reported button {
+    border-radius: 20px;
+    background-color: orangered;
+    color: white;
+    font-weight: bold;
+    height: 35px;
+}
+
+.add-patient-button {
+    margin-top: 2rem;
+}

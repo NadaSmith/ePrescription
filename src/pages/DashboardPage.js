@@ -43,50 +43,28 @@ function DashboardPage()  {
 
             <hr></hr>
 
-            <div className="gray-section">
+            <div className="top-row">
                 <PatientInfo />
 
                 <Insurance />
 
                 <div className="add-prescription-button">
-                    <AddPrescription />
+                    <AddPrescription className="first-button" />
 
                     <AddPatientReported />
                 </div>
+            </div>
+        
+            <div className="second-row">
+                    
+            </div>
 
-            </div>
-            
-            
-            
-            <div className="patient-info-section">
-                <div>
-                    <h1>Mr Patient's name, sex, age</h1>
-                    <button>PLUS SIGN</button>
-                    <div>
-                        <button>Edit Patient Info</button>
-                    </div>
-                    <div>
-                        <button>Add/Edit Drug Allergies</button>
-                    </div>
-                    <div>
-                        <button>Add/Edit Pharmacies</button>
-                    </div>
-                </div>
-                <div>
-                    <h1>Coverage Details</h1>
-                    <img></img>
-                    <button>PLUS SIGN</button>
-                </div>
-                <div>
-                    <button>Add Prescription</button>
-                    <button>Add Patient Reported</button>
-                </div>
-            </div>
             <div className="add-medication">
 
             </div>
+
             {/*table of pending meds; in table add link to add prescription button*/}
-            <div className="Pending medications">
+            <div className="pending-medications">
 
             </div>
         </div>

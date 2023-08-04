@@ -1,12 +1,13 @@
 import React from "react";
+import "./AddPrescription.css";
 
 function AddPrescription() {
 
 
     return(
-        <div>
-            <button>Add Prescription</button>
-        </div>
+        <button className="add-prescrition-button" type="submit">
+            Add Prescription
+        </button>
     );
 }
 

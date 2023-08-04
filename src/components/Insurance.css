@@ -1,30 +1,43 @@
 .insurance-component {
     border: black solid;
-    width: 400px;
-    height: 200;
+    width: 300px;
+    height: 200px;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .insurance {
-    background-color: white;
-    height: 150px;
-    width: 300px;
+    background-color: transparent;
+    
     display: flex;
     flex-direction: row;
+    margin-top: px;
+    justify-content: space-between;
 }
 
 .insurance img {
     width: 20px;
     height: 20px;
-    margin-top: 20px;
+    margin-top: 0px;
 }
 
 .coverage-details img {
-    width: 200px;
-    height: 200px;
-
+    background-color: transparent;
+    width: 150px;
+    height: 150px;
+    margin-left: 25%;
 }
 
 .insurance h1 {
     color: black;
     font-weight: lighter;
+    margin-left: 5px;
+    margin-top: 0;
 }
+
+
+
+

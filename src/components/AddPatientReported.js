@@ -2,9 +2,8 @@ import React from "react";
 
 function AddPatientReported() {
     return(
-        <div>
-            <button>Add Patient Reported</button>
-        </div>
+        <button className="add-pateint-reported">Add Patient Reported</button>
+        
     );
 }
 

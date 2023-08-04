@@ -1,13 +1,24 @@
-.gray-section {
-    background-color: gray;
+.top-row {
+    background-color: lightgray;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
 
 .add-prescription-button {
-    background-color: gray;
-
+    background-color: lightgray;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin-top: -30px;
+    margin-right: 2rem;
 }
 
 
+.second-row {
+    background-color: lightgray;
+}
+
+.pending-medications {
+
+}
