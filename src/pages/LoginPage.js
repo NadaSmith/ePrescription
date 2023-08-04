@@ -7,7 +7,7 @@ function LoginPage() {
     const navigate = useNavigate();
 
     function handleLogin() {
-        navigate('/patient-ist');
+        navigate('/patient-list');
     }
 
     return (
@@ -35,8 +35,8 @@ function LoginPage() {
 
             <div className="button">
                 {/*add the button to navigate to PatientListPage*/}
-                <button onClick={handleLogin}>Log In</button>
-                <button>Forgot Password</button>
+                <button onClick={handleLogin} className="first-button">Log In</button>
+                <button className="second-button">Forgot Password</button>
             </div>
         </div>
     );
