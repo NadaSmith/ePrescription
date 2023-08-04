@@ -3,6 +3,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    margin-top: -9px;
 }
 
 .add-prescription-button {
@@ -14,4 +15,11 @@
 
 .second-row {
     background-color: lightgray;
+    display: flex;
+    flex-direction: row;
+}
+
+.dashboard-page hr {
+    margin-top: -10px;
+    border-top: 2px solid black;
 }

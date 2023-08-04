@@ -9,11 +9,13 @@ import "./DashboardPage.css";
 import Insurance from "../components/Insurance";
 import AddPrescription from "../components/AddPrescription";
 import AddPatientReported from "../components/AddPatientReported";
+import DrugAllergy from "../components/DrugAllergy";
+import Alert from "../components/Alert";
 
 
 
 //place to store all dashboard components
-function DashboardPage()  {
+function DashboardPage()   {
     const { patientId } = useParams();         //get the patientID from the URL parameter
 
     useEffect(() => {
@@ -56,7 +58,9 @@ function DashboardPage()  {
             </div>
         
             <div className="second-row">
-                    
+                <DrugAllergy />
+
+                <Alert />
             </div>
 
             <div className="add-medication">
