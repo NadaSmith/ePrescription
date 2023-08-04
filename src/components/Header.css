@@ -1,0 +1,33 @@
+* {
+    background-color: white;
+}
+
+header {
+    display: flex;
+    flex-direction: row;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.darkened {
+    color: midnightblue;
+}
+
+.lightened {
+    color: orangered;
+}
+
+h1 {
+    background-color: white;
+    color: black;
+    margin-left: 2rem;
+}
+
+img {
+    width: 200px;
+    margin-top: -40px;
+}

@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import React from "react";
-import './LoginPage.css';
+import "./LoginPage.css";
 
 
 function LoginPage() {

@@ -1,4 +1,4 @@
-import './App.css';
+import './pages/LoginPage.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import DashboardPage from './pages/DashboardPage';
 import LoginPage from './pages/LoginPage';
@@ -11,8 +11,6 @@ function App() {
   return (
     
     <Router>
-      {/*defines routes*/}
-
       <Routes>
         <Route path='/' element={<LoginPage />} />
         <Route path='/dashboardpage' element={<DashboardPage />} />

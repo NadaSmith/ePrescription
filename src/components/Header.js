@@ -1,15 +1,18 @@
 //the header will include logo for login page
 //it will include logo, dashboard, and patient list on dashboard page
 import React from "react";
+import logo from "../images/logo.png";
+import "./Header.css";
 
 function Header() {
     return (
         <header>
-            <img></img>
-            <h1>Dashbaord</h1>
-            <h1>Patient List</h1>
-            <h1>Logout</h1>
-            <h1></h1>
+            <img src={logo} alt="Dose pill spot" />
+            <div className="header">
+                <h1 className="darkened">Dashbaord</h1>
+                <h1 className="lightened">Patients</h1>
+                <h1 className="lightened">Logout</h1>
+            </div>
         </header>
     );
 }

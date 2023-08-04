@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Header from "../components/Header";
 
 function PatientListPage() {
     const [patientData, setPatientData] = useState([]);
@@ -32,7 +33,7 @@ function PatientListPage() {
     
     return (
         <div>
-            <header>Patient List</header>
+            <Header />
 
             <h2>Find A Patient</h2>
 
