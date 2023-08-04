@@ -10,6 +10,7 @@ import AddPrescriptionPage from './pages/AddPrescriptionPage';
 function App() {
   return (
     <Router>
+      <LoginPage />
       {/*defines routes*/}
       <Routes>
         <Route path='/' element={<LoginPage />} />
