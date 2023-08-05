@@ -35,7 +35,7 @@ function LoginPage() {
                 <p>Remember me next time</p>
             </div>
 
-            <div className="button">
+            <div className="login-button">
                 
                 <button className="first-button" onClick={handleLogin}>Log In</button>
                 
