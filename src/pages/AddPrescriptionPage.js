@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import AddPrescriptionOptions from "../components/AddPrescriptionOptions";
 import "./AddPrescriptionPage.css";
+import exit from "../images/exit.png";
+import PrescriptionForm from "../components/PrescriptionForm";
 
 const AddPrescriptionPage = () => {
     //sample state to hold patient's med info
@@ -34,50 +36,18 @@ const AddPrescriptionPage = () => {
 
     return (
         <div className="add-prescription-page">
-            <h1 className="first-bar">Add Prescription</h1>
+            <div className="add-prescription-page-title">
+                <h1 className="first-bar">Add Prescription</h1>
+                <img src={exit}></img>
+            </div>
 
-            <AddPrescriptionOptions />
+            <div className="add-prescription-form">
+                <AddPrescriptionOptions />
 
-            <form onSubmit={handleSubmit}>
-                <div className="third-bar">
-                    <label>Search for a Diagnosis by name or ICD10 to select it.</label>
-                    <input type="text"  placeholder="Diagnosis"></input>
-                </div>
+                <PrescriptionForm />
+            </div>
 
-                <div className="fourth-bar">
-                    <label>Search for a medication by name, then click the meidcation name to select it.</label>
-                    <input type="text" value={medicationName} onChange={(e) => setMedicationName(e.target.value)} placeholder="Medication Name" required></input>
-                </div>
-
-                <div className="fifth-bar">
-                    
-                </div>
-
-                <div className="sixth-bar">
-                    
-                </div>
-
-                <div className="seventh-bar">
-                    
-                </div>
-
-                <div className="eigth-bar">
-                    
-                </div>
-
-                <div className="ninth-bar">
-                    
-                </div>
-
-                <div className="tenth-bar">
-                    
-                </div>
-
-                <div className="eleventh-bar">
-                    <button type="submit">Save Prescription</button>
-                </div>
-            </form>
-
+           
 
             
         </div>

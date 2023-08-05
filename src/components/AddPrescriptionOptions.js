@@ -4,9 +4,9 @@ import "./AddPrescriptionOptions.css"
 function AddPrescriptionOptions() {
     return (
         <div className="option-bar"> 
-            <h2 className="clicked-button">Medication</h2>
-            <h2>Supply</h2>
-            <h2>Compound</h2>
+            <button className="clicked-button">Medication</button>
+            <button>Supply</button>
+            <button>Compound</button>
         </div>
     );
 }
