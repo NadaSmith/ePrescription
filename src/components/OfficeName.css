@@ -6,6 +6,11 @@
     margin: 10px;
 }
 
+.office-name hr:last-child {
+    margin-top: -8px;
+    border: 1px solid black;
+}
+
 .office-name p {
     text-align: center;
     color: blue;

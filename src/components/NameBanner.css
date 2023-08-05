@@ -2,22 +2,28 @@
     background-color: #386890;
     display: flex;
     flex-direction: row;
-    height: 70px;
+    height: 45px;
+    margin-top: -20px;
+    border: red solid;
 }
 
-.name-banner h1 {
+.name-lock p {
     background-color: #386890;
     color: orangered;
     font-weight: lighter;
-    font-size: x-large;
+    font-size: large;
     margin-left: 0;
+    margin: auto;
+    width: 14rem;
+    border: purple solid;
 }
 
 .name-banner img {
-    width: 50px; 
-    height: 50px;
-    background-color: #386890;
-    margin-top: 0.4rem;
+    width: 30px; 
+    height: 30px;
+    background-color: transparent;
+    margin-top: 0;
+
 }
 
 emb {
@@ -28,7 +34,10 @@ emb {
 .name-lock {
     display: flex;
     flex-direction: row;
-    background-color: #386890;
+    background-color: transparent;
+    height: 30px;
+    margin-top: 5px;
+    border: pink solid;
 }
 
 .name-banner button {
@@ -36,7 +45,11 @@ emb {
     background-color: orangered;
     color: white;
     font-weight: bold;
+    width: 25%;
     height: 35px;
     margin-left: 65%;
-    margin-top: 1.1rem;
+    margin-right: 10px;
+    font-size: medium;
+    border: none;
+    margin-top: 5px;
 }

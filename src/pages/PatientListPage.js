@@ -35,56 +35,53 @@ function PatientListPage() {
     }
     
     return (
-        <div>
-            <Header />
+        <div className="patient-list">
+            <h1>Patient List</h1>
 
-            <NameBanner />
+            <div className="patient-list-form">
 
-            <OfficeName />
+                <h2 className="find-a-patient">Find A Patient</h2>
 
-            <hr></hr>
+                <form className="search-patient">
+                    <input type="text" value={searchValue} onChange={(e) => setSearchValue(e.target.value)} />
+                    <button onClick={{handleSearch}}>Search</button>
+                    <p>Show Recent Patients</p>
+                </form>
 
-            <h2 className="find-a-patient">Find A Patient</h2>
+                <div className="recent-patient">
+                    <h2>My Recent Patients</h2>
+                    <button>Add New Patient</button>
+                </div>
 
-            <form className="search-patient">
-                <input type="text" value={searchValue} onChange={(e) => setSearchValue(e.target.value)} />
-                <button onClick={{handleSearch}}>Search</button>
-                <p>Show Recent Patients</p>
-            </form>
-
-            <div className="recent-patient">
-                <h2>My Recent Patients</h2>
-                <button>Add New Patient</button>
-            </div>
-
-            {/*place table with 5 rows (Name, Age, Gender, Birth Date, row for button)*/}
-            <table className="table">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Age</th>
-                        <th>Gender</th>
-                        <th>Birth Date</th>
-                        <th>
-                            <></>
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {patientData.map((patient, index) => (
-                        <tr key={index}>
-                            <td>{patient.name}</td>
-                            <td>{patient.age}</td>
-                            <td>{patient.gender}</td>
-                            <td>{patient.birthDate}</td>
-                            <td>
-                                <button onClick={() => handleViewPatient(patient.id)}>View</button>
-                            </td>
+                {/*place table with 5 rows (Name, Age, Gender, Birth Date, row for button)*/}
+                <table className="table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Age</th>
+                            <th>Gender</th>
+                            <th>Birth Date</th>
+                            <th>
+                                <></>
+                            </th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {patientData.map((patient, index) => (
+                            <tr key={index}>
+                                <td>{patient.name}</td>
+                                <td>{patient.age}</td>
+                                <td>{patient.gender}</td>
+                                <td>{patient.birthDate}</td>
+                                <td>
+                                    <button onClick={() => handleViewPatient(patient.id)}>View</button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
 
+            </div>
         </div>
     );
 };
