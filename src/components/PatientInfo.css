@@ -30,17 +30,19 @@
 }
 
 .bottom {
-    margin-bottom: 2em;
-    width: 99%;
     display: flex;
     flex-direction: row;
-    justify-content:end;
 }
 
 .drug, .pharm {
     background-color: white;
     color: orangered;
     margin-left: 8rem;
-    width: 30%;
+    width: 75%;
+    border: black solid;
+}
+
+.pharm {
+    margin-right: 1rem;
 }
 

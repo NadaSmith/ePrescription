@@ -1,11 +1,19 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "./AddPrescription.css";
+
 
 function AddPrescription() {
 
+    const navigate = useNavigate();
+
+    function handleAddingPrescription() {
+        //navigate to the addprescriptionpage when the "Log In" button is clicked
+        navigate("/addprescriptionpage");
+    } 
 
     return(
-        <button className="add-prescrition-button" type="submit">
+        <button className="add-prescription-button" onClick={handleAddingPrescription}>
             Add Prescription
         </button>
     );

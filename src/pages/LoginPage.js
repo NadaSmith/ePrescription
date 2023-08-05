@@ -7,7 +7,7 @@ function LoginPage() {
     const navigate = useNavigate();
 
     function handleLogin() {
-        //navigate to the dashboardpage when the "Log In" button is clicked
+        //navigate to the patientlistpage when the "Log In" button is clicked
         navigate("/patientlistpage");
     }
 

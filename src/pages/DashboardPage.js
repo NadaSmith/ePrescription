@@ -50,7 +50,7 @@ function DashboardPage()   {
 
                 <Insurance />
 
-                <div className="add-prescription-button">
+                <div className="add-prescription-button-dashboard">
                     <AddPrescription className="first-button" />
 
                     <AddPatientReported />

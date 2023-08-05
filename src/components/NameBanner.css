@@ -4,7 +4,6 @@
     flex-direction: row;
     height: 45px;
     margin-top: -20px;
-    border: red solid;
 }
 
 .name-lock p {
@@ -15,7 +14,6 @@
     margin-left: 0;
     margin: auto;
     width: 14rem;
-    border: purple solid;
 }
 
 .name-banner img {
@@ -37,7 +35,6 @@ emb {
     background-color: transparent;
     height: 30px;
     margin-top: 5px;
-    border: pink solid;
 }
 
 .name-banner button {

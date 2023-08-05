@@ -13,6 +13,7 @@ function Insurance() {
             <div className="coverage-details">
                 <img src={insurance_pic}></img>
             </div>
+
         </div>
     );
 }
