@@ -39,7 +39,7 @@ function DashboardPage()   {
         <div className="dashboard-page">
             <Header />
 
-            <NameBanner />
+            <NameBanner id="custom-banner"/>
 
             <OfficeName />
 

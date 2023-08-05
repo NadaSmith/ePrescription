@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Header from "../components/Header";
-import NameBanner from "../components/NameBanner";
-import OfficeName from "../components/OfficeName";
 import "./PatientListPage.css";
 
 function PatientListPage() {
@@ -22,13 +19,13 @@ function PatientListPage() {
     const handleSearch = () => {
         //filter the patientData based on the searchValue
         const filteredData = patientData.filter((patient) => 
-        patient.toLowerCase().includes(searchValue.toLowerCase())
+        patient.name.toLowerCase().includes(searchValue.toLowerCase())
         );
         //update the patientData state with filteredData
         setPatientData(filteredData);
     };
 
-
+    //function to view patient details
     function handleViewPatient(patientID) {
         //redirect tot he dashboard page, pass the pt ID as a URL parameter
         navigate(`/dashboard/${patientID}`);
@@ -44,7 +41,7 @@ function PatientListPage() {
 
                 <form className="search-patient">
                     <input type="text" value={searchValue} onChange={(e) => setSearchValue(e.target.value)} />
-                    <button onClick={{handleSearch}}>Search</button>
+                    <button onClick={handleSearch}>Search</button>
                     <p>Show Recent Patients</p>
                 </form>
 
