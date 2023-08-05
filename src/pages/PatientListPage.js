@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./PatientListPage.css";
+import PatientData from "../data/PatientData";
 
 function PatientListPage() {
     const [patientData, setPatientData] = useState([]);
@@ -25,6 +26,29 @@ function PatientListPage() {
         setPatientData(filteredData);
     };
 
+    //function to add a new patient from data
+    const handleAddPatient = () => {
+        const updatedData = [...patientData, patientData];
+        setPatientData(updatedData);
+        localStorage.setItem("patientData", JSON.stringify(updatedData));
+    };
+
+    //function to delete a patient from local storage
+    const handleDeletePatient = (patientId) => {
+        const updatedData = patientData.filter((patient) => patient.id !== patientId);
+        setPatientData(updatedData);
+        localStorage.setItem("patientData", JSON.stringify(updatedData));
+    }
+
+    //function to edit a patient data
+    const handleEditPatient = (patientID, newData) => {
+        const updatedData = patientData.map((patient) =>
+            patient.id === patientID ? { ...patient, ...newData} : patient
+        );
+        setPatientData(updatedData);
+        localStorage.setItem("patientData", JSON.stringify(updatedData))
+    };
+
     //function to view patient details
     function handleViewPatient(patientID) {
         //redirect tot he dashboard page, pass the pt ID as a URL parameter
@@ -47,7 +71,7 @@ function PatientListPage() {
 
                 <div className="recent-patient">
                     <h2>My Recent Patients</h2>
-                    <button>Add New Patient</button>
+                    <button onClick={handleAddPatient}>Add New Patient</button>
                 </div>
 
                 {/*place table with 5 rows (Name, Age, Gender, Birth Date, row for button)*/}
@@ -64,14 +88,16 @@ function PatientListPage() {
                         </tr>
                     </thead>
                     <tbody>
-                        {patientData.map((patient, index) => (
-                            <tr key={index}>
+                        {patientData.map((patient) => (
+                            <tr key={patient.id}>
                                 <td>{patient.name}</td>
                                 <td>{patient.age}</td>
                                 <td>{patient.gender}</td>
                                 <td>{patient.birthDate}</td>
                                 <td>
                                     <button onClick={() => handleViewPatient(patient.id)}>View</button>
+                                    <button onClick={() => handleEditPatient(patient.id, {name: "New Name", age: "New Age"})}>Edit</button>
+                                    <button onClick={() => handleDeletePatient(patient.id)}>Delete</button>
                                 </td>
                             </tr>
                         ))}

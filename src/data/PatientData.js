@@ -1,32 +1,90 @@
 import React, { useState, useEffect } from "react";
-import { json } from "react-router-dom";
 
-function PatientList() {
-    const [patients, setPatients] = useState([]);
-    const [newPatientName, setNewPatientName] = useState("");
-    const [editingPatientId, setEditingNewPatientId] = useState(null);
+const PatientData = [
+{
+    id: 1,
+    name: "Fred Jockey",
+    age: "20 yrs",
+    gender: "Male",
+    birthDate: "2003-05-16",
+}, 
+{
+    id: 2,
+    name: "Mary Shelly",
+    age: "40 yrs",
+    gender: "Female",
+    birthDate: "2003-05-16",
+},
+{
+    id: 3,
+    name: "Carl Thompson",
+    age: "45 yrs",
+    gender: "Male",
+    birthDate: "2003-05-16",
+},
+{
+    id: 4,
+    name: "Erica Jackson",
+    age: "31 yrs",
+    gender: "Female",
+    birthDate: "2003-05-16",
+},
+{
+    id: 5,
+    name: "Loretta Herley",
+    age: "63 yrs",
+    gender: "Female",
+    birthDate: "2003-05-16",
+},
+{
+    id: 6,
+    name: "Ted Humphrey",
+    age: "26 yrs",
+    gender: "Male",
+    birthDate: "2003-05-16",
+},
+{
+    id: 7,
+    name: "Nedra Dickerson",
+    age: "24 yrs",
+    gender: "Female",
+    birthDate: "2003-05-16",
+},
+{
+    id: 8,
+    name: "Bobby Hillson",
+    age: "36 yrs",
+    gender: "Male",
+    birthDate: "2003-05-16",
+},
+{
+    id: 9,
+    name: "Katherine Kang",
+    age: "55 yrs",
+    gender: "Female",
+    birthDate: "2003-05-16",
+},
+{
+    id: 10,
+    name: "Elijah Muhommad",
+    age: "72 yrs",
+    gender: "Male",
+    birthDate: "2003-05-16",
+},
+{
+    id: 11,
+    name: "Harris Bailey",
+    age: "66 yrs",
+    gender: "Male",
+    birthDate: "2003-05-16",
+},
+{
+    id: 12,
+    name: "Natalie Smith",
+    age: "32 yrs",
+    gender: "Female",
+    birthDate: "2003-05-16",
+}]
 
-    useEffect(() => {
-        //fetch the initial data from local storage when the component mounts
-        const storedPatient = JSON.parse(localStorage.getItem("patients")) || []
-        setPatients(storedPatient);
-    }, []);
 
-    const handledAddPatient = () => {
-        //Add a new patient to the list and update local storage
-        const newPatient = { id: Date.now(), name: newPatientName };
-        setPatients([...patients, newPatient]);
-        setNewPatientName('');
-        localStorage.setItem("patients", JSON.stringify([...patients, newPatient]));
-    };
-
-    const handleDeletePatient = (id) => {
-        //delete a patient from the list and update local storage
-        const updatedPatients = patients.filter((patient) => patient.id !== id);
-        setPatients(updatedPatients);
-        localStorage.setItem("patients", JSON.stringify(updatedPatients));
-    }
-}
-
-
-export default PatientList;
+export default PatientData;
