@@ -7,6 +7,7 @@ function OfficeName() {
             <h1>DoseSpote QA Clinic 1</h1>
             <hr></hr>
             <p>Please be sure to run, prine, and sign your daily Prescriptions Report today!</p>
+            <hr></hr>
         </div>
     );
 }

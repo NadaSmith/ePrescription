@@ -1,0 +1,9 @@
+.add-prescription-page h1 {
+    color: white;
+    background-color: #386890;
+    width: 100%;
+    margin-top: auto;
+    margin-left: auto;
+    font-weight: lighter;
+    padding: 0.5rem;
+}

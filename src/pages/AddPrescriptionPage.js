@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import Header from "../components/Header";
-import NameBanner from "../components/NameBanner";
-import OfficeName from "../components/OfficeName";
+import AddPrescriptionOptions from "../components/AddPrescriptionOptions";
+import "./AddPrescriptionPage.css";
 
 const AddPrescriptionPage = () => {
     //sample state to hold patient's med info
@@ -34,21 +33,10 @@ const AddPrescriptionPage = () => {
     }
 
     return (
-        <div>
-            <Header />
-
-            <NameBanner />
-
-            <OfficeName />
-
-
+        <div className="add-prescription-page">
             <h1 className="first-bar">Add Prescription</h1>
 
-            <div className="second-bar">
-                <button className="clicked-button">Medication</button>
-                <h2>Supply</h2>
-                <h2>Compound</h2>
-            </div>
+            <AddPrescriptionOptions />
 
             <form onSubmit={handleSubmit}>
                 <div className="third-bar">
