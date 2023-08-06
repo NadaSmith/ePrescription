@@ -74,7 +74,7 @@ function PatientListPage() {
 
     //function to add a new patient from data
     const handleAddPatient = (newPatient) => {
-        const updatedData = [...patientData, newPatient];
+        const updatedData = [...patientData, { ...newPatient, id: String(newPatient.id) }];
         setPatientData(updatedData);
         localStorage.setItem("patientData", JSON.stringify(updatedData));
         setIsFormVisible(false);     //hide form after adding a new
@@ -108,10 +108,18 @@ function PatientListPage() {
         setIsFormVisible(true);    //shows form when edit button is clicked
     };
 
-    //function to view patient details
-    function handleViewPatient(patientID) {
-        //redirect tot he dashboard page, pass the pt ID as a URL parameter
-        navigate(`/dashboardpage/${patientID}`);
+    function handleViewPatient(patientName) {
+        const foundPatient = patientData.find((patient) => {
+          return patient.name.toLowerCase() === patientName.toLowerCase();
+        });
+      
+        if (foundPatient) {
+          // Patient found, navigate to the dashboard page with the patient ID
+          navigate(`/dashboardpage/${foundPatient.id}`);
+        } else {
+          // Patient not found, handle the case accordingly
+          alert("Patient not found.");
+        }
     }
     
     return (
@@ -155,7 +163,7 @@ function PatientListPage() {
                                 <td>{patient.gender}</td>
                                 <td>{patient.birthDate}</td>
                                 <td>
-                                    <button onClick={() => handleViewPatient(patient.id)}>View</button>
+                                    <button onClick={() => handleViewPatient(patient.name)}>View</button>
                                     <button onClick={() => showEditForm(patient)}>Edit</button>
                                     <button onClick={() => handleDeletePatient(patient.id)}>Delete</button>
                                 </td>
@@ -170,6 +178,7 @@ function PatientListPage() {
                     onEditPatient={handleEditPatient} 
                     onCancel={hideForm} 
                     isEditMode={isEditMode} 
+                    initialPatientData={editingPatient}
                     name={name}
                     setName={setName}
                     age={age}

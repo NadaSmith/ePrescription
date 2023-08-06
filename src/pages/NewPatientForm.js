@@ -27,6 +27,8 @@ function NewPatientForm({ onAddPatient, initialPatientData, onEditPatient, onCan
         birthDate,
       };
 
+      console.log("New patient data:", newPatient);
+
       // Call the onAddPatient function passed as a prop to add the new patient
       onAddPatient(newPatient);
 
@@ -43,6 +45,8 @@ function NewPatientForm({ onAddPatient, initialPatientData, onEditPatient, onCan
         gender,
         birthDate,
       };
+
+      console.log("Updated patient data:", updatedPatient);
 
       // Call the onEditPatient function passed as a prop to update the patient
       onEditPatient(initialPatientData.id, updatedPatient);
