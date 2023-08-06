@@ -2,35 +2,82 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./PatientListPage.css";
 import PatientData from "../data/PatientData";
+import NewPatientForm from "./NewPatientForm";
+
 
 function PatientListPage() {
     const [patientData, setPatientData] = useState([]);
     const [searchValue, setSearchValue] = useState('');
+    const [isFormVisible, setIsFormVisible] = useState(false);    
+    const [isEditMode, setIsEditMode] = useState(false);    
+    const [editingPatient, setEditingPatient] = useState(null);
+    const [name, setName] = useState(""); // Declare the state setters here
+    const [age, setAge] = useState("");
+    const [gender, setGender] = useState("");
+    const [birthDate, setBirthDate] = useState("");
     const navigate = useNavigate();
+
+    //function to show the form in add mode
+    const showAddForm = () => {
+        setIsFormVisible(true);
+        setIsEditMode(false);
+    };
+
+    //function to show form in edit mode with selected pt
+    const showEditForm = (patient) => {
+        if (patient) {
+            setIsFormVisible(true);
+            setIsEditMode(true);
+
+            // Set the form fields with the selected patient data
+            setEditingPatient(patient);
+        }
+    };
+
+    //function to hide the form
+    const hideForm = () => {
+        setIsFormVisible(false);
+
+        //reset form fields
+        setName('');
+        setAge('');
+        setGender('');
+        setBirthDate('');
+    };
 
     //fetch patient data from local storage during component mount
     useEffect(() => {
         const storedData = localStorage.getItem("patientData");
         if (storedData) {
             setPatientData(JSON.parse(storedData));
+        } else {
+            //use imported pt data if no data in local storage
+            setPatientData(PatientData);
         }
     }, []);
 
     //function to handle search
     const handleSearch = () => {
-        //filter the patientData based on the searchValue
-        const filteredData = patientData.filter((patient) => 
-        patient.name.toLowerCase().includes(searchValue.toLowerCase())
+        //finds the first patient that matches the search value
+        const foundPatient = patientData.find((patient) => 
+        patient.name.toLowerCase() === searchValue.toLowerCase()
         );
-        //update the patientData state with filteredData
-        setPatientData(filteredData);
+        
+        if (foundPatient) {
+            //pt found then navigate to dashboard page w/ pt Id as URL parameter
+            navigate(`/dashboard/${foundPatient.id}`);
+        } else {
+            //pt not found then alert 
+            alert("Patient not found.");
+        }
     };
 
     //function to add a new patient from data
-    const handleAddPatient = () => {
-        const updatedData = [...patientData, patientData];
+    const handleAddPatient = (newPatient) => {
+        const updatedData = [...patientData, newPatient];
         setPatientData(updatedData);
         localStorage.setItem("patientData", JSON.stringify(updatedData));
+        setIsFormVisible(false);     //hide form after adding a new
     };
 
     //function to delete a patient from local storage
@@ -40,19 +87,31 @@ function PatientListPage() {
         localStorage.setItem("patientData", JSON.stringify(updatedData));
     }
 
-    //function to edit a patient data
+    // Function to handle editing a patient
     const handleEditPatient = (patientID, newData) => {
         const updatedData = patientData.map((patient) =>
-            patient.id === patientID ? { ...patient, ...newData} : patient
+            patient.id === patientID ? { ...patient, ...newData } : patient
         );
         setPatientData(updatedData);
-        localStorage.setItem("patientData", JSON.stringify(updatedData))
+        localStorage.setItem("patientData", JSON.stringify(updatedData));
+        setIsFormVisible(false);
+    };
+
+    //function to handle clicking edit button
+    const handleAddNewPatientClick = () => {
+        setIsFormVisible(true);    //shows form when add new pt button is clicked
+    }
+
+    //function to set the pt to be edited
+    const handleEditClick = (patient) => {
+        setEditingPatient(patient);
+        setIsFormVisible(true);    //shows form when edit button is clicked
     };
 
     //function to view patient details
     function handleViewPatient(patientID) {
         //redirect tot he dashboard page, pass the pt ID as a URL parameter
-        navigate(`/dashboard/${patientID}`);
+        navigate(`/dashboardpage/${patientID}`);
     }
     
     return (
@@ -71,10 +130,11 @@ function PatientListPage() {
 
                 <div className="recent-patient">
                     <h2>My Recent Patients</h2>
-                    <button onClick={handleAddPatient}>Add New Patient</button>
+                    <button onClick={showAddForm}>Add New Patient</button>
                 </div>
+                
 
-                {/*place table with 5 rows (Name, Age, Gender, Birth Date, row for button)*/}
+                {/*place table with 5rows (Name, Age, Gender, Birth Date, row for button)*/}
                 <table className="table">
                     <thead>
                         <tr>
@@ -96,7 +156,7 @@ function PatientListPage() {
                                 <td>{patient.birthDate}</td>
                                 <td>
                                     <button onClick={() => handleViewPatient(patient.id)}>View</button>
-                                    <button onClick={() => handleEditPatient(patient.id, {name: "New Name", age: "New Age"})}>Edit</button>
+                                    <button onClick={() => showEditForm(patient)}>Edit</button>
                                     <button onClick={() => handleDeletePatient(patient.id)}>Delete</button>
                                 </td>
                             </tr>
@@ -104,7 +164,24 @@ function PatientListPage() {
                     </tbody>
                 </table>
 
+                {isFormVisible && (
+                <NewPatientForm 
+                    onAddPatient={handleAddPatient} 
+                    onEditPatient={handleEditPatient} 
+                    onCancel={hideForm} 
+                    isEditMode={isEditMode} 
+                    name={name}
+                    setName={setName}
+                    age={age}
+                    setAge={setAge}
+                    gender={gender}
+                    setGender={setGender}
+                    birthDate={birthDate}
+                    setBirthDate={setBirthDate}
+                />
+                )}
             </div>
+            
         </div>
     );
 };

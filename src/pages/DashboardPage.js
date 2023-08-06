@@ -1,6 +1,6 @@
 //Dashboard will contain most of the components here: footer, header, medication history, prescription form, inactive and active meds, and drug allergy
-import React, { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useParams, useSearchParams } from "react-router-dom";
 import Header from "../components/Header";
 import NameBanner from "../components/NameBanner";
 import PatientInfo from "../components/PatientInfo";
@@ -11,28 +11,21 @@ import AddPrescription from "../components/AddPrescription";
 import AddPatientReported from "../components/AddPatientReported";
 import DrugAllergy from "../components/DrugAllergy";
 import Alert from "../components/Alert";
+import PatientData from "../data/PatientData";
 
-
-
-//place to store all dashboard components
 function DashboardPage()   {
     const { patientId } = useParams();         //get the patientID from the URL parameter
+    const [patient, setPatient] = useState(null);     //state to store the found patient
 
     useEffect(() => {
-        //fetch medication data from OpenFDA API and update the state; but will focus on local storage functionality right now.
-        const fetchMedicationData = () => {
-            const storedData = localStorage.getItem("medicatonData");
-            if (storedData) {
-                return JSON.parse(storedData);
-            } else {
-                return [];    //return an empty arry if no daya found
-            }
-        };
-
-        const medicationData = fetchMedicationData();
-
-        fetchMedicationData();
-    }, []);
+        //find the pt in the PatientData array based on patientID
+        const foundPatient = PatientData.find((patient) => patient.id === parseInt(patientId));
+            
+        if (foundPatient) {
+            //set found pt to the state
+            setPatient(foundPatient);
+        } 
+    }, [patientId]);    //add that here as a dependency to re-run effect when it changes
 
 
     return (

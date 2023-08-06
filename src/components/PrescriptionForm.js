@@ -1,21 +1,43 @@
-import React, { useState } from "react";
-import { addPrescription } from "../data/Prescription";
+import React, { useState, useContext } from "react";
 import "./PrescriptionForm.css";
 import add from "../images/add.png";
 import star from "../images/star.png";
+import { AppContext } from "./AppContext";
+
 
 
 function PrescriptionForm() {
+    const { setDrugInfo } = useContext(AppContext);
+    const [prescription, setPrescription] = useState('');
+    const [result, setResult] = useState(null);
 
-    //get form data and crete new prescription object
-    const handleSubmit = () => {
+    const handleInput = (event) => {
+        setPrescription(event.target.value);
+    };
+    
+    const handleSubmit = (event) => {
+        event.preventDefault();
 
-    }
+        if (prescription.trim() === '') {
+            alert('Please enter a drug name.')
+            return;
+        }
 
-    //add new prescription to local storage
+        const apiKey = 'rTFoxUO4tQqvxskfFuTEl3Iu3jj0KPQVpMkRsqQ7';
+        const apiUrl = `https://api.fda.gov/drug/label.json?search=openfda.brand_name:${prescription}&limit=1`;
 
-    //clear the form or perform other necessary actions
-
+        fetch(apiUrl, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${apiKey}`,
+            },
+        })
+            .then((response) => response.json())
+            .then((data) => {setResult(data);
+            })
+            .catch((error) => {console.error('Error fetching data:', error);
+        });
+    };
 
     return (
         <div className="prescription-form">
@@ -27,7 +49,7 @@ function PrescriptionForm() {
 
                 <div className="fourth-bar">
                     <label>Search for a medication by name, then click the meidcation name to select it.</label>
-                    <input type="text"  placeholder="Medication Name" required></input>
+                    <input type="text" value={prescription} onChange={handleInput} placeholder="Medication Name" required></input>
                 </div>
 
                 <div className="fifth-bar">

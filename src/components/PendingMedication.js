@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AppContext } from "./AppContext";
 import "./PendingMedication.css";
 
 function PendingMedication() {
+    const { drugInfo } = useContext(AppContext);
+
     //fetch pending medication data (from local storage or API)
     function fetchPendingMeidcationData() {
         if (storedData) {
