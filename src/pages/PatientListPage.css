@@ -104,7 +104,7 @@
 }
 
 td button {
-    background-color: non
+    background-color: none;
 }
 
 td:nth-child(1),
@@ -126,3 +126,16 @@ td:nth-child(4),
   th:nth-child(4) {
     width: 10%;
 }
+
+.no-data {
+    background-color: white;
+    border: solid black;
+    width: 800px;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    margin-left: 2rem;
+    margin-top: 2rem;
+    text-align: center;
+}
+

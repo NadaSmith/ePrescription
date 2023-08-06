@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "./PatientListPage.css";
 import PatientData from "../data/PatientData";
 import NewPatientForm from "./NewPatientForm";
+import PatientInfo from "../components/PatientInfo";
 
 
 function PatientListPage() {
@@ -65,7 +66,7 @@ function PatientListPage() {
         
         if (foundPatient) {
             //pt found then navigate to dashboard page w/ pt Id as URL parameter
-            navigate(`/dashboard/${foundPatient.id}`);
+            navigate(`/dashboardpage/${foundPatient.id}`);
         } else {
             //pt not found then alert 
             alert("Patient not found.");
@@ -74,9 +75,17 @@ function PatientListPage() {
 
     //function to add a new patient from data
     const handleAddPatient = (newPatient) => {
-        const updatedData = [...patientData, { ...newPatient, id: String(newPatient.id) }];
+        //assign a unique ID to the new pt object
+        const uniqueID = Math.random();
+        const newPatientWithID = { ...newPatient, id: uniqueID };
+
+        //add the new pt w/ unique ID to the patientData array
+        const updatedData = [...patientData, newPatientWithID];
+        
+        //save the updated patientData arry to local storage
         setPatientData(updatedData);
         localStorage.setItem("patientData", JSON.stringify(updatedData));
+        
         setIsFormVisible(false);     //hide form after adding a new
     };
 
@@ -108,18 +117,9 @@ function PatientListPage() {
         setIsFormVisible(true);    //shows form when edit button is clicked
     };
 
-    function handleViewPatient(patientName) {
-        const foundPatient = patientData.find((patient) => {
-          return patient.name.toLowerCase() === patientName.toLowerCase();
-        });
-      
-        if (foundPatient) {
-          // Patient found, navigate to the dashboard page with the patient ID
-          navigate(`/dashboardpage/${foundPatient.id}`);
-        } else {
-          // Patient not found, handle the case accordingly
-          alert("Patient not found.");
-        }
+    function handleViewPatient(patientID) {
+        // Redirect to the dashboard page, pass the pt ID as a URL parameter
+        navigate(`/dashboardpage/${patientID}`);
     }
     
     return (
@@ -157,13 +157,13 @@ function PatientListPage() {
                     </thead>
                     <tbody>
                         {patientData.map((patient) => (
-                            <tr key={patient.id}>
+                            <tr key={patient.id} patientData={patient}>
                                 <td>{patient.name}</td>
                                 <td>{patient.age}</td>
                                 <td>{patient.gender}</td>
                                 <td>{patient.birthDate}</td>
                                 <td>
-                                    <button onClick={() => handleViewPatient(patient.name)}>View</button>
+                                    <button onClick={() => handleViewPatient(patient.id)}>View</button>
                                     <button onClick={() => showEditForm(patient)}>Edit</button>
                                     <button onClick={() => handleDeletePatient(patient.id)}>Delete</button>
                                 </td>

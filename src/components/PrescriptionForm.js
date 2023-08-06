@@ -1,47 +1,62 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import "./PrescriptionForm.css";
 import add from "../images/add.png";
 import star from "../images/star.png";
-import { AppContext } from "./AppContext";
+import { useAppContext } from "./AppContext";
+import PendingMedication from "./PendingMedication";
 
 
-
-function PrescriptionForm() {
-    const { setDrugInfo } = useContext(AppContext);
+function PrescriptionForm({ handleSubmit }) {
     const [prescription, setPrescription] = useState('');
-    const [result, setResult] = useState(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [fetchedData, setFetchedData] = useState(null);
+    const { setDrugInfo } = useAppContext();
 
     const handleInput = (event) => {
         setPrescription(event.target.value);
     };
     
-    const handleSubmit = (event) => {
-        event.preventDefault();
+   //handle the save prescription button click
+   const handleSavePrescription = async () => {
+    if (prescription.trim() === '') {
+        alert('Please enter a drug name.')
+        return;
+    }
 
-        if (prescription.trim() === '') {
-            alert('Please enter a drug name.')
-            return;
-        }
+    const apiKey = 'rTFoxUO4tQqvxskfFuTEl3Iu3jj0KPQVpMkRsqQ7';
+    const apiUrl = `https://api.fda.gov/drug/drugsfda.json?search=${prescription}&count=products.brand_name.exact`;
 
-        const apiKey = 'rTFoxUO4tQqvxskfFuTEl3Iu3jj0KPQVpMkRsqQ7';
-        const apiUrl = `https://api.fda.gov/drug/label.json?search=openfda.brand_name:${prescription}&limit=1`;
-
-        fetch(apiUrl, {
+    try {
+        const response = await fetch(apiUrl, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${apiKey}`,
             },
-        })
-            .then((response) => response.json())
-            .then((data) => {setResult(data);
-            })
-            .catch((error) => {console.error('Error fetching data:', error);
         });
+
+        if (!response.ok) {
+            throw new Error("Network response was not ok");
+        }
+
+        const data = await response.json();
+        //store the fetched data in local storage
+        localStorage.setItem("fetchedData", JSON.stringify(data));
+        //set the fetched data in the component state
+        setFetchedData(data);
+        //check the fetched data
+        console.log("Fetched Data:", data);
+        //open the modal
+        setIsModalOpen(true);
+    }   catch (error) {
+        console.error('Error fetching data:', error);
+        //reset drug info in case of error
+        setDrugInfo(null);
+      }
     };
 
     return (
         <div className="prescription-form">
-            <form onSubmit={handleSubmit} className="prescription-form-data">
+            <form className="prescription-form-data">
                 <div className="third-bar">
                     <label>Search for a Diagnosis by name or ICD10 to select it.</label>
                     <input type="text"  placeholder="Diagnosis"></input>
@@ -111,7 +126,7 @@ function PrescriptionForm() {
 
 
                 <div className="twelfth-bar">
-                    <button type="submit">Save Prescription</button>
+                    <button type="button" onClick={handleSavePrescription}>Save Prescription</button>
                 </div>
             </form>
             
@@ -170,6 +185,12 @@ function PrescriptionForm() {
                 </div>
             </div>
 
+            {/* Add the modal */}
+            {isModalOpen && (
+                <PendingMedication
+                fetchedData={fetchedData}
+                />
+            )}
         </div>
     );
 }

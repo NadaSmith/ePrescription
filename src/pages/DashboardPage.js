@@ -14,18 +14,17 @@ import Alert from "../components/Alert";
 import PatientData from "../data/PatientData";
 
 function DashboardPage()   {
-    const { patientId } = useParams();         //get the patientID from the URL parameter
+    const { patientID } = useParams();         //get the patientID from the URL parameter
     const [patient, setPatient] = useState(null);     //state to store the found patient
 
+    //fetch pt data from local storage using pt ID
     useEffect(() => {
-        //find the pt in the PatientData array based on patientID
-        const foundPatient = PatientData.find((patient) => patient.id === parseInt(patientId));
-            
-        if (foundPatient) {
-            //set found pt to the state
-            setPatient(foundPatient);
+        const storedData = localStorage.getItem("patientData");
+        if (storedData) {
+            const parsedData = JSON.parse(storedData);
+            const patient = parsedData.find((p) => p.id === parseFloat(patientID));
         } 
-    }, [patientId]);    //add that here as a dependency to re-run effect when it changes
+    }, [patientID]);    //add that here as a dependency to re-run effect when it changes
 
 
     return (
