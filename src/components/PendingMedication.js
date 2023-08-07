@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useAppContext } from "./AppContext";
 import "./PendingMedication.css";
-import ReactModal from "react-modal";
 import Modal from "react-modal"
 import { Link } from "react-router-dom";
 
-function PendingMedication({  }) {
+function PendingMedication({}) {
     const [pendingMedicationData, setPendingMedicationData] = useState([]);
     const { fetchedData, drugInfo, isModalOpen, setIsModalOpen, setDrugInfo } = useAppContext();
 
@@ -33,15 +32,36 @@ function PendingMedication({  }) {
     };
 
     useEffect(() => {
-        const storedData = localStorage.getItem("pendingMedications");
-        if (storedData) {
-            setPendingMedicationData(JSON.parse(storedData));
-        }
-    }, []);
+        const fetchMedicationData = async () => {
+          // Use fetchedData to fetch data from the OpenFDA API
+          const apiKey = "your_openFDA_api_key";
+          const apiUrl = `https://api.fda.gov/drug/drugsfda.json?search=${fetchedData}&count=products.brand_name.exact`;
+    
+          try {
+            const response = await fetch(apiUrl, {
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${apiKey}`,
+              },
+            });
+    
+            if (!response.ok) {
+              throw new Error("Network response was not ok");
+            }
+    
+            const data = await response.json();
+            setPendingMedicationData(data.results);
+          } catch (error) {
+            console.error("Error fetching data:", error);
+          }
+        };
+    
+        fetchMedicationData();
+    }, [fetchedData]);
 
     return (
-        <ReactModal
-            isOpen={true}
+        <Modal
+            isOpen
             onRequestClose={() => setIsModalOpen(false)}
             contentLabel="Pending Medication"
         >
@@ -70,11 +90,10 @@ function PendingMedication({  }) {
                         <></>
                     </th>
                     <th>Medication</th>
-                    <th>Dispense</th>
-                    <th>Date</th>
-                    <th>Refills</th>
-                    <th>Prescriber</th>
-                    <th>Pharmacy</th>
+                    <th>Dosage</th>
+                    <th>Instructions</th>
+                    <th>Side Effects</th>
+                    <th>Category</th>
                     <th>
                         <></>
                     </th>
@@ -83,7 +102,6 @@ function PendingMedication({  }) {
                 </tr>
 
                 <tbody>
-                    {/*Display medication data in rows*/}
                     {fetchedData &&
                         fetchedData.results.map((medication, index) => (
                         <tr key={index}>
@@ -91,7 +109,6 @@ function PendingMedication({  }) {
                                 <button></button>
                             </td>
                             <td>{medication.term}</td>
-                            <td></td>
                             <td></td>
                             <td></td>
                             <td></td>
@@ -105,7 +122,6 @@ function PendingMedication({  }) {
                             </td>
                         </tr>  
                     ))}
-                     
                </tbody>
             </table>
 
@@ -128,7 +144,7 @@ function PendingMedication({  }) {
 
                 <button onClick={() => setIsModalOpen(false)}>Close Modal</button>
             </Modal>
-        </ReactModal>
+        </Modal>
     );
 };
 

@@ -188,6 +188,7 @@ function PrescriptionForm({ handleSubmit }) {
             {/* Add the modal */}
             {isModalOpen && (
                 <PendingMedication
+                closeModal={() => setIsModalOpen(false)}
                 fetchedData={fetchedData}
                 />
             )}
