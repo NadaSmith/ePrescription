@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 function PendingMedication({}) {
     const [pendingMedicationData, setPendingMedicationData] = useState([]);
     const [selectedMedication, setSelectedMedication] = useState(null);
-    const { drugInfo, isModalOpen, setIsModalOpen, setDrugInfo } = useAppContext();
+    const { isModalOpen, setIsModalOpen, setDrugInfo } = useAppContext();
 
     const handleViewMedication = (medication) => {
         //set druginfo in the context
@@ -18,14 +18,18 @@ function PendingMedication({}) {
 
     useEffect(() => {
         const fetchMedicationData = async () => {
-          //load med data from local JSON file
-          try {
-            const response = await fetch("./Medication.json");
+            
+            //getting absolute path to json file
+            const jsonPath = require.resolve("../data/Medication.json");
+            //load med data from local JSON file
+            try {
+            const response = await fetch(jsonPath);
             if (!response.ok) {
               throw new Error("Network response was not ok");
             }
             const data = await response.json();
-            setPendingMedicationData(data.results);
+            console.log(data);
+            setPendingMedicationData(data.drugs);
           } catch (error) {
             console.error("Error fetching data:", error);
           }

@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./PatientListPage.css";
-import PatientData from "../data/PatientData";
 import NewPatientForm from "./NewPatientForm";
-import PatientInfo from "../components/PatientInfo";
+
 
 
 function PatientListPage() {
@@ -16,6 +15,7 @@ function PatientListPage() {
     const [age, setAge] = useState("");
     const [gender, setGender] = useState("");
     const [birthDate, setBirthDate] = useState("");
+    const [filteredPatientData, setFilteredPatientData] = useState([]);
     const navigate = useNavigate();
 
     //function to show the form in add mode
@@ -46,32 +46,74 @@ function PatientListPage() {
         setBirthDate('');
     };
 
-    //fetch patient data from local storage during component mount
+    // Function to fetch patient data from local storage during component mount
+    const fetchLocalPatientData = () => {
+    const storedData = localStorage.getItem("patientData");
+    if (storedData) {
+      return JSON.parse(storedData);
+    }
+    return [];
+    };
+
+    // Function to fetch patient data from the JSON file
+    const fetchPatientData = async () => {
+    try {
+      const response = await fetch("https://gist.githubusercontent.com/NadaSmith/377c51388ce91a7695592dc16f960509/raw/5f9039eedc6a6ed79abdf1554d92a8520d4bc769/PatientData.json");
+      console.log("Fetch Response:", response);
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error("Error fetching patient data:", error);
+      return [];
+    }
+};
+
     useEffect(() => {
-        const storedData = localStorage.getItem("patientData");
-        if (storedData) {
-            setPatientData(JSON.parse(storedData));
-        } else {
-            //use imported pt data if no data in local storage
-            setPatientData(PatientData);
-        }
+    const fetchData = async () => {
+      const dataFromJsonFile = await fetchPatientData();
+      console.log("Fetched data:", dataFromJsonFile)
+      if (dataFromJsonFile.length > 0) {
+        setPatientData(dataFromJsonFile);
+        localStorage.setItem("patientData", JSON.stringify(dataFromJsonFile));
+      } else {
+        const dataFromLocalStorage = fetchLocalPatientData();
+        setPatientData(dataFromLocalStorage);
+      }
+    };
+
+    // Function to fetch patient data from the JSON file and find a patient by name
+    const fetchPatientByName = async (name) => {
+        const dataFromJsonFile = await fetchPatientData();
+        const foundPatient = dataFromJsonFile.find(
+        (patient) => patient.name.toLowerCase() === name.toLowerCase()
+        );
+        return foundPatient;
+        };
+
+        fetchData();
     }, []);
 
-    //function to handle search
-    const handleSearch = () => {
-        //finds the first patient that matches the search value
-        const foundPatient = patientData.find((patient) => 
-        patient.name.toLowerCase() === searchValue.toLowerCase()
+    const handleSearch = async () => {
+        // Fetch patient data by name from the local patientData state
+        const foundPatient = patientData.find(
+            (patient) => patient.name.toLowerCase() === searchValue.toLowerCase()
         );
-        
+    
         if (foundPatient) {
-            //pt found then navigate to dashboard page w/ pt Id as URL parameter
-            navigate(`/dashboardpage/${foundPatient.id}`);
+            // Save the found patient in local storage
+            localStorage.setItem("foundPatient", JSON.stringify(foundPatient));
         } else {
-            //pt not found then alert 
+            // If patient is not found, show the alert and clear local storage
             alert("Patient not found.");
+            localStorage.removeItem("foundPatient");
         }
     };
+      
 
     //function to add a new patient from data
     const handleAddPatient = (newPatient) => {
@@ -117,10 +159,17 @@ function PatientListPage() {
         setIsFormVisible(true);    //shows form when edit button is clicked
     };
 
-    function handleViewPatient(patientID) {
-        // Redirect to the dashboard page, pass the pt ID as a URL parameter
-        navigate(`/dashboardpage/${patientID}`);
+    function handleViewPatient() {
+        const foundPatient = JSON.parse(localStorage.getItem("foundPatient"));
+        if (foundPatient) {
+            // Redirect to the dashboard page, pass the patient ID as a URL parameter
+            navigate(`/dashboardpage/${foundPatient.id}`);
+        } else {
+            // Show an error message or handle as per your preference
+            alert("Patient not found.");
+        }
     }
+    
     
     return (
         <div className="patient-list">

@@ -1,7 +1,6 @@
 import React from "react";
 import add from "../images/add.png"
 import "./PatientInfo.css"
-import PatientData from "../data/PatientData";
 
 
 function PatientInfo({ patient }) {

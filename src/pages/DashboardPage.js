@@ -11,7 +11,6 @@ import AddPrescription from "../components/AddPrescription";
 import AddPatientReported from "../components/AddPatientReported";
 import DrugAllergy from "../components/DrugAllergy";
 import Alert from "../components/Alert";
-import PatientData from "../data/PatientData";
 
 function DashboardPage()   {
     const { patientID } = useParams();         //get the patientID from the URL parameter
