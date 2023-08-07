@@ -6,7 +6,8 @@ import { Link } from "react-router-dom";
 
 function PendingMedication({}) {
     const [pendingMedicationData, setPendingMedicationData] = useState([]);
-    const { fetchedData, drugInfo, isModalOpen, setIsModalOpen, setDrugInfo } = useAppContext();
+    const [selectedMedication, setSelectedMedication] = useState(null);
+    const { drugInfo, isModalOpen, setIsModalOpen, setDrugInfo } = useAppContext();
 
     const handleViewMedication = (medication) => {
         //set druginfo in the context
@@ -14,41 +15,15 @@ function PendingMedication({}) {
         //opens the modal
         setIsModalOpen(true);
     };
-   
-    const handleDeleteMedication = (medicationId) => {
-        //show confirmation message and then remove the medication from list
-        if (window.confirm("Are you sure you want to delete this medication?")) {
-            const updatedPendingMedicationData = pendingMedicationData.filter(
-                (medication) => medication.id !== medicationId
-            );
-            //update the local stat with the updated list
-            setPendingMedicationData(updatedPendingMedicationData);
-            //updated the local storage with updated list
-            localStorage.setItem(
-                "pendingMedications",
-                JSON.stringify(updatedPendingMedicationData)
-            );
-        }
-    };
 
     useEffect(() => {
         const fetchMedicationData = async () => {
-          // Use fetchedData to fetch data from the OpenFDA API
-          const apiKey = "your_openFDA_api_key";
-          const apiUrl = `https://api.fda.gov/drug/drugsfda.json?search=${fetchedData}&count=products.brand_name.exact`;
-    
+          //load med data from local JSON file
           try {
-            const response = await fetch(apiUrl, {
-              headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${apiKey}`,
-              },
-            });
-    
+            const response = await fetch("./Medication.json");
             if (!response.ok) {
               throw new Error("Network response was not ok");
             }
-    
             const data = await response.json();
             setPendingMedicationData(data.results);
           } catch (error) {
@@ -57,11 +32,69 @@ function PendingMedication({}) {
         };
     
         fetchMedicationData();
-    }, [fetchedData]);
+    }, []);
+
+    const handleAddMedication = () => {
+        //create a new medication object withthe desired properties
+        const newMedication = {
+            id:Math.floor(Math.random() * 1000),
+            name: "",
+            dosage:"",
+            instructions:"",
+            side_effects:"",
+            catgory:"",
+        };
+
+        //add new medication to the list
+        const updatedPendingMedicationData = [...pendingMedicationData, newMedication];
+
+        //update local state and local storage with updated list
+        setPendingMedicationData(updatedPendingMedicationData);
+        localStorage.setItem("pendingMedications", JSON.stringify(updatedPendingMedicationData));
+    };
+
+    
+    const handleEditMedication = (medication => {
+        setSelectedMedication(medication);
+        setIsModalOpen(true);
+    });
+
+    const handleSaveMedication = () => {
+        if (selectedMedication) {
+            //find index of selected med in list
+            const index = pendingMedicationData.findIndex(
+                (medication) => medication.id === selectedMedication.id
+            );
+
+            //copy list to avoid modifying state
+            const updatedPendingMedicationData = [...pendingMedicationData];
+
+            //update selected med w/ new data
+            updatedPendingMedicationData[index] = selectedMedication;
+
+            //update local state and local storage w/ updated list
+            setPendingMedicationData(updatedPendingMedicationData);
+            localStorage.setItem("pendingMedications", JSON.stringify(updatedPendingMedicationData));
+
+            //close modal
+            setIsModalOpen(false);
+        } 
+    };
+
+    const handleDeleteMedication = (medicationId) => {
+        if (window.confirm("Are you sure you want to delete this medication!")) {
+            const updatedPendingMedicationData = pendingMedicationData.filter(
+                (medication) => medication.id !== medicationId
+            );
+
+            setPendingMedicationData(updatedPendingMedicationData);
+            localStorage.setItem("pendingMedications", JSON.stringify(updatedPendingMedicationData));
+        }
+    }
 
     return (
         <Modal
-            isOpen
+            isOpen={isModalOpen}
             onRequestClose={() => setIsModalOpen(false)}
             contentLabel="Pending Medication"
         >
@@ -102,17 +135,16 @@ function PendingMedication({}) {
                 </tr>
 
                 <tbody>
-                    {fetchedData &&
-                        fetchedData.results.map((medication, index) => (
-                        <tr key={index}>
+                    {pendingMedicationData.map((medication) => (
+                        <tr key={medication.id}>
                             <td className="select-all">
                                 <button></button>
                             </td>
-                            <td>{medication.term}</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td>{medication.name}</td>
+                            <td>{medication.dosage}</td>
+                            <td>{medication.instructions}</td>
+                            <td>{medication.side_effects}</td>
+                            <td>{medication.category}</td>
                             <td>
                                 <select>
                                     <option>Actions</option>
@@ -131,19 +163,38 @@ function PendingMedication({}) {
                 </button>
             </div>
 
-            {/* Modal */}
-            <Modal
-                isOpen={isModalOpen}
-                onRequestClose={() => setIsModalOpen(false)}
-                contentLabel="Medication Details"
-            >
-                <h2>Medication Details</h2>
-                {/* Display the selected medication information here */}
-                {/* For example: */}
-                {drugInfo && <p>Medication Name: {drugInfo.name}</p>}
-
-                <button onClick={() => setIsModalOpen(false)}>Close Modal</button>
-            </Modal>
+            {selectedMedication && (
+        <div>
+          <h2>Medication Details</h2>
+          <table className="medication-details-table">
+            <tbody>
+              <tr>
+                <td>Medication Name:</td>
+                <td>{selectedMedication.name}</td>
+              </tr>
+              <tr>
+                <td>Dosage:</td>
+                <td>{selectedMedication.dosage}</td>
+              </tr>
+              <tr>
+                <td>Instructions:</td>
+                <td>{selectedMedication.instructions}</td>
+              </tr>
+              <tr>
+                <td>Side Effects:</td>
+                <td>{selectedMedication.side_effects}</td>
+              </tr>
+              <tr>
+                <td>Category:</td>
+                <td>{selectedMedication.category}</td>
+              </tr>
+            </tbody>
+          </table>
+          {/* Other properties can be added as rows in this table */}
+          <button onClick={handleSaveMedication}>Save</button>
+          <button onClick={() => setIsModalOpen(false)}>Close Modal</button>
+        </div>
+      )}
         </Modal>
     );
 };

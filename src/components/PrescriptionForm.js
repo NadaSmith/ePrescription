@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./PrescriptionForm.css";
 import add from "../images/add.png";
 import star from "../images/star.png";
 import { useAppContext } from "./AppContext";
 import PendingMedication from "./PendingMedication";
+import medicationData from "../data/Medication.json"
 
 
 function PrescriptionForm({ handleSubmit }) {
@@ -16,42 +17,40 @@ function PrescriptionForm({ handleSubmit }) {
         setPrescription(event.target.value);
     };
     
+    //fetch data when component mounts
+    useEffect(() => {
+        setFetchedData(medicationData);
+    }, []);
+
    //handle the save prescription button click
-   const handleSavePrescription = async () => {
-    if (prescription.trim() === '') {
-        alert('Please enter a drug name.')
+   const handleSavePrescription = () => {
+        if (prescription.trim() === '') {
+        alert('Please enter a drug name.');
         return;
-    }
-
-    const apiKey = 'rTFoxUO4tQqvxskfFuTEl3Iu3jj0KPQVpMkRsqQ7';
-    const apiUrl = `https://api.fda.gov/drug/drugsfda.json?search=${prescription}&count=products.brand_name.exact`;
-
-    try {
-        const response = await fetch(apiUrl, {
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${apiKey}`,
-            },
-        });
-
-        if (!response.ok) {
-            throw new Error("Network response was not ok");
         }
-
-        const data = await response.json();
-        //store the fetched data in local storage
-        localStorage.setItem("fetchedData", JSON.stringify(data));
-        //set the fetched data in the component state
-        setFetchedData(data);
-        //check the fetched data
-        console.log("Fetched Data:", data);
-        //open the modal
+    
+        // Find the drug in the local data
+        const foundDrug = medicationData.drugs.find(
+        (drug) => drug.name.toLowerCase() === prescription.toLowerCase()
+        );
+    
+        if (!foundDrug) {
+        // Drug not found in local data
+        alert('Drug not found in the local data.');
+        return;
+        }
+    
+        // Set the fetched data in the component state
+        setFetchedData({
+            name: foundDrug.name,
+            dosage: foundDrug.dosage,
+            intructions: foundDrug.instructions,
+            side_effects: foundDrug.side_effects,
+            category: foundDrug.category,
+        });
+        
+        // Open the modal
         setIsModalOpen(true);
-    }   catch (error) {
-        console.error('Error fetching data:', error);
-        //reset drug info in case of error
-        setDrugInfo(null);
-      }
     };
 
     return (

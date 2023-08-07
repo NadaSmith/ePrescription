@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import Modal from "react-modal"
+import Modal from "react-modal";
+import "./PatientListPage.css";
 
 function NewPatientForm({ onAddPatient, initialPatientData, onEditPatient, onCancel, isEditMode }) {
     const [name, setName] = useState("");
@@ -65,32 +66,48 @@ function NewPatientForm({ onAddPatient, initialPatientData, onEditPatient, onCan
 
     return (
         <Modal isOpen={true} onRequestClose={onCancel}>
-          <div>
-              <h2>{isEditMode ? "Edit Patient" : "Add New Patient"}</h2>
-              <form>
-                  <label>
-                      Name:
-                      <input type="text" value={name} onChange={(e) => setName(e.target.value)} required />
-                  </label>
+          <div className="new">
+              <h2 className="add-new-patient">{isEditMode ? "Edit Patient" : "Add New Patient"}</h2>
+              <form className="new-patient-form">
+                  
+                  <div className="input-container"> 
+                    <div className="name-input">
+                      <label>
+                          Name:
+                        </label>
+                        <input type="text" value={name} onChange={(e) => setName(e.target.value)} required />
+                    </div>
 
-                  <label>
-                      Age:
+                    <div className="age-input">
+                      <label>
+                          Age:
+                      </label>
                       <input type="text" value={age} onChange={(e) => setAge(e.target.value)} required />
-                  </label>
+                    </div>
 
-                  <label>
-                      Gender:
+                    <div className="gender-input">
+                      <label>
+                          Gender:
+                      </label>
                       <input type="text" value={gender} onChange={(e) => setGender(e.target.value)} required />
-                  </label>
+                    </div>
 
-                  <label>
-                      Birth Date:
+                    <div className="bday-input">
+                      <label>
+                          Birth Date:
+                      </label>
                       <input type="text" value={birthDate} onChange={(e) => setBirthDate(e.target.value)} required />
-                  </label>
-                  <button type="button" onClick={handleSubmit}>
-                      {isEditMode ? "Save Changes" : "Add Patient"}
-                  </button>
-                  <button onClick={onCancel}>Cancel</button>
+                    </div>
+
+                  </div>
+
+                  <div className="button-container">
+                    <button className="new-patient-button" type="button" onClick={handleSubmit}>
+                        {isEditMode ? "Save Changes" : "Add Patient"}
+                    </button>
+                    <button className="new-patient-button" onClick={onCancel}>Cancel</button>
+                  </div>
+
               </form>
             </div>
         </Modal>

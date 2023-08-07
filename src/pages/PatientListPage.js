@@ -143,7 +143,7 @@ function PatientListPage() {
                 
 
                 {/*place table with 5rows (Name, Age, Gender, Birth Date, row for button)*/}
-                <table className="table">
+                <table className="patient-table">
                     <thead>
                         <tr>
                             <th>Name</th>
@@ -157,15 +157,15 @@ function PatientListPage() {
                     </thead>
                     <tbody>
                         {patientData.map((patient) => (
-                            <tr key={patient.id} patientData={patient}>
+                            <tr className="column-width" key={patient.id} patientData={patient}>
                                 <td>{patient.name}</td>
                                 <td>{patient.age}</td>
                                 <td>{patient.gender}</td>
                                 <td>{patient.birthDate}</td>
                                 <td>
-                                    <button onClick={() => handleViewPatient(patient.id)}>View</button>
-                                    <button onClick={() => showEditForm(patient)}>Edit</button>
-                                    <button onClick={() => handleDeletePatient(patient.id)}>Delete</button>
+                                    <button className="view" onClick={() => handleViewPatient(patient.id)}>View</button>
+                                    <button className="edit" onClick={() => showEditForm(patient)}>Edit</button>
+                                    <button className="delete" onClick={() => handleDeletePatient(patient.id)}>Delete</button>
                                 </td>
                             </tr>
                         ))}

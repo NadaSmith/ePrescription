@@ -77,54 +77,42 @@
     border: #386890 solid;
 }
 
-.table {
+.patient-table {
     margin-top: 2em;
     width: 95%;
     border-collapse: collapse;
     margin-left: 3rem;
+    background-color: #386890;
 }
 
 
-.table tr, .table th, .table td {
+.patient-table tr, .patient-table th, .patient-table td {
     border: 1px solid lightgray;
     padding: 8px;
 }
 
-.table tbody {
+.patient-table tbody {
     border: 1px solid lightgray;
+    font-size: x-large;
 }
 
-.table th {
+.patient-table th {
     background-color: white;
     font-weight: bolder;
+    font-size: x-large;
 }
 
-.table tr:nth-child(even) {
-    background-color:lavenderblush;
+.patient-table tr:nth-child(even) {
+    background-color:bisque;
 }
 
 td button {
     background-color: none;
 }
 
-td:nth-child(1),
-  th:nth-child(1) {
-    width: 55%;
-}
-
-td:nth-child(2),
-  th:nth-child(2) {
-    width: 5%;
-}
-
-td:nth-child(3),
-  th:nth-child(3) {
-    width: 8%;
-}
-
-td:nth-child(4),
-  th:nth-child(4) {
-    width: 10%;
+.patient-table th:nth-child(2),
+.patient-table td:nth-child(2) {
+    width: 1%;
 }
 
 .no-data {
@@ -139,3 +127,68 @@ td:nth-child(4),
     text-align: center;
 }
 
+.new-patient-button {
+    border: solid black;
+    border-radius: 5px;
+    margin: auto;
+}
+
+.add-new-patient {
+    background-color: #386890;
+    margin-top: -20px;
+    color: white;
+    margin-left: -20px;
+    width: 110%;
+    height: 40px;
+    padding-top: 0.3rem;
+    padding-left: 1rem;
+}
+
+.new-patient-form {
+    border: solid #386890;
+    width: 40%;
+    height: 450px;
+    margin-left: 400px;
+    margin-top: 3rem;
+    border-radius: 10px;
+    background-color: #386890;
+}
+
+.new-patient-form label {
+    margin: auto;
+    background-color: orangered;
+}
+
+.button-container {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    background-color: transparent;
+    margin: auto;
+    margin-top: -2rem;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+    justify-content:space-evenly;
+    background-color: orangered;
+    border: solid black;
+    margin-top: 2rem;
+    margin: 3.5em;
+    width: 450px;
+    border-radius: 5px;
+    padding-bottom: 1rem;
+}
+
+.name-input, .age-input, .gender-input, .bday-input {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: orangered;
+
+}
+
+.name-input input, .age-input input, .gender-input input, .bday-input input {
+    margin: auto;
+}
