@@ -73,45 +73,59 @@ function PatientListPage() {
     }
 };
 
-    useEffect(() => {
-    const fetchData = async () => {
-      const dataFromJsonFile = await fetchPatientData();
-      console.log("Fetched data:", dataFromJsonFile)
-      if (dataFromJsonFile.length > 0) {
-        setPatientData(dataFromJsonFile);
-        localStorage.setItem("patientData", JSON.stringify(dataFromJsonFile));
-      } else {
-        const dataFromLocalStorage = fetchLocalPatientData();
-        setPatientData(dataFromLocalStorage);
-      }
-    };
-
-    // Function to fetch patient data from the JSON file and find a patient by name
-    const fetchPatientByName = async (name) => {
-        const dataFromJsonFile = await fetchPatientData();
-        const foundPatient = dataFromJsonFile.find(
-        (patient) => patient.name.toLowerCase() === name.toLowerCase()
-        );
-        return foundPatient;
-        };
+    useEffect(() => {                                                               //useEffect hook runs when the component mounts; mounting includs reloading; causes table to populate 
+        const fetchData = async () => {                                                 //have to change the alert function to a modal or alert component so the page won't reload; then the useEffect won't be mounted again so it will not autopopulate the data in the chart
+            const dataFromJsonFile = await fetchPatientData();
+            console.log("Fetched data:", dataFromJsonFile)
+            if (dataFromJsonFile.length > 0) {
+                setPatientData(dataFromJsonFile);
+                localStorage.setItem("patientData", JSON.stringify(dataFromJsonFile));
+            } else {
+                const dataFromLocalStorage = fetchLocalPatientData();
+                setPatientData(dataFromLocalStorage);
+            }
+        }
 
         fetchData();
     }, []);
 
     const handleSearch = async () => {
-        // Fetch patient data by name from the local patientData state
+        //input value from search field
+        if (!searchValue) {              
+            //if empty search value, don't search
+            return;
+        }
+        //Convert the search value and patient names to lowercase for case-insenstive comparison
+        const lowercaseSearchValue = searchValue.toLowerCase();
+
+        //checking to see if value has been lowercased
+        console.log("Lowercase Search Value:", lowercaseSearchValue);
+
+        //log the content of the patientData array
+        console.log("Patient Data:", patientData);
+
+        //fetch pt data (by name) from local patientData state
         const foundPatient = patientData.find(
-            (patient) => patient.name.toLowerCase() === searchValue.toLowerCase()
+            (patient) => patient.name.toLowerCase() === lowercaseSearchValue
         );
     
+        //checking to see what info has been passed to foundPatient
+        console.log("Found Patient:", foundPatient);
+
         if (foundPatient) {
             // Save the found patient in local storage
             localStorage.setItem("foundPatient", JSON.stringify(foundPatient));
+            console.log("Fetched patient from Local Storage:", foundPatient);
         } else {
             // If patient is not found, show the alert and clear local storage
-            alert("Patient not found.");
+            alert("Patient not found."); //The alert function has default behavior triggers a page reload when alert is dismissed. alert function is synchronous and doesnt provide a way to control the browser: Make a model or alert component for this function
             localStorage.removeItem("foundPatient");
         }
+
+        //Add a delay before the page reloads 
+        setTimeout(() => {
+            window.location.reload(); // Reload the page
+        }, 3000); //3 seconds
     };
       
 
@@ -159,17 +173,10 @@ function PatientListPage() {
         setIsFormVisible(true);    //shows form when edit button is clicked
     };
 
-    function handleViewPatient() {
-        const foundPatient = JSON.parse(localStorage.getItem("foundPatient"));
-        if (foundPatient) {
-            // Redirect to the dashboard page, pass the patient ID as a URL parameter
-            navigate(`/dashboardpage/${foundPatient.id}`);
-        } else {
-            // Show an error message or handle as per your preference
-            alert("Patient not found.");
-        }
+    function handleViewPatient(patientID) {
+        // Redirect to the dashboard page, pass the pt ID as a URL parameter
+        navigate(`/dashboardpage/${patientID}`);
     }
-    
     
     return (
         <div className="patient-list">
