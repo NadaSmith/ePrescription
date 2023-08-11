@@ -2,33 +2,34 @@
 
 <!-- Project Image -->
 
-![Project Logo](./logo.png)
+![ePrescription App](ePrescription-Demo-Pic.png)
 
 <!-- Project Link -->
 
 ## Project Link
 
-Check out the [ePrescription App Demo](link here), a comprehensive solution for efficient prescription management.
+<!-- Check out the [ePrescription App Demo](link here), a comprehensive solution for efficient prescription management.-->
 
 <!-- TABLE OF CONTENTS -->
 
 ## Table of Contents
 - [About](#about)
-- [Features](#features)
+  - [Features](#features)
 - [Technologies Used](#technologies-used)
-- [Getting Started](#getting-started)
-  - [Prerequisites](#prerequisites)
-  - [Installation](#installation)
+- [Getting Started With Create React App](#getting-started-with-create-react-app)
 - [Usage](#usage)
-- [Credits](#credits)
+- [Approach](#approach)
 - [Contributing](#contributing)
-- [License](#license)
-
+- [Credits](#credits)
+- [Project Status](#project-status)
+- [Contact Info](#contact-info)
+  
 <!-- OVERVIEW -->
 
 ## About
 My ePrescription App is a modern and comprehensive web application designed to streamline the prescription management process for helathcare professionals. The platform empowers doctors and meidcal practitioners to efficiently create, manage, and track patient prescritpions, enhancing patient care and medical recordkeeping. 
-**Key Features:**
+
+## Features
 
 - **Intelligent Medication Search:** Our app features an intelligent medication search bar, allowing healthcare providers to quickly search and select medications using their names, dosages, or other keywords.
   
@@ -46,7 +47,14 @@ My ePrescription App is a modern and comprehensive web application designed to s
   
 - **Data Security:** We prioritize patient data security. The app employs robust encryption and authentication measures to protect sensitive medical information.
 
-Experience the future of prescription management with the ePrescription App
+Experience the future of prescription management with my ePrescription App.
+
+## Technologies Used
+- React.js
+- Node.js
+- Express.js
+- MongoDB
+- Html/CSS
 
 ## Getting Started with Create React App
 
@@ -119,11 +127,19 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
-## Acknowledgements
-I would like to thank my Per Scholas coding bootcamp for the assignment. 
+## Usage
+
+## Approach
+My ePrescription App was developed with a user-centric design approach similar to DoseSpot's application, focusing on intuitive prescription creation, efficient medication selection, and streamlined prescription management. I utilized React.js for the frontend, will utilize Node.js and Express.js for the backend and MongoDB for data storage.
+
+## Contributing
+My app is not open to contributions at this time. 
+
+## Credits
+I would like to thank DoseSpot for being the inpsiration of this project as well as my Per Scholas' coding bootcamp for giving me the assignment to express my interest in this company.
 
 ## Project Status
-The project status is active, and developement is in progress.
+The ePrescription App is currently in active development. New features and enhancements are being added regularly. It is currently a front end project utilizing local storage and JSON files. I'm currently building outthe backend and database to make it a full stack MERN project, which will be my capstone project upon completion of my coding bootcamp. 
 
 ## Contact Info
 - Website [Ayronada Smith](https://www.ayronada.com)
