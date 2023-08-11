@@ -2,7 +2,7 @@
 
 <!-- Project Image -->
 
-![ePrescription App](ePrescription-Demo-Pic.png)
+![ePrescription App](ePrescription%20Demo%20Pic.png)
 
 <!-- Project Link -->
 
