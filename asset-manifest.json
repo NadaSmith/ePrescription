@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/ePrescription/static/css/main.caab26d6.css",
+    "main.js": "/ePrescription/static/js/main.4a867860.js",
+    "static/media/lock.png": "/ePrescription/static/media/lock.50c1af5b7338aa7290e8.png",
+    "static/media/exit.png": "/ePrescription/static/media/exit.06c73c117b6437e844c5.png",
+    "static/media/add.png": "/ePrescription/static/media/add.fa3157f5f1d2681ca4a4.png",
+    "static/media/insurance_pic.png": "/ePrescription/static/media/insurance_pic.3298647e0c595a793ad7.png",
+    "static/media/logo.png": "/ePrescription/static/media/logo.e0ee276346f0c7bdefa4.png",
+    "index.html": "/ePrescription/index.html",
+    "main.caab26d6.css.map": "/ePrescription/static/css/main.caab26d6.css.map",
+    "main.4a867860.js.map": "/ePrescription/static/js/main.4a867860.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.caab26d6.css",
+    "static/js/main.4a867860.js"
+  ]
+}
