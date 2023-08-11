@@ -1,12 +1,62 @@
-# Getting Started with Create React App
+# ePrescription App
+
+<!-- Project Image -->
+
+![Project Logo](./logo.png)
+
+<!-- Project Link -->
+
+## Project Link
+
+Check out the [ePrescription App Demo](link here), a comprehensive solution for efficient prescription management.
+
+<!-- TABLE OF CONTENTS -->
+
+## Table of Contents
+- [About](#about)
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+- [Usage](#usage)
+- [Credits](#credits)
+- [Contributing](#contributing)
+- [License](#license)
+
+<!-- OVERVIEW -->
+
+## About
+My ePrescription App is a modern and comprehensive web application designed to streamline the prescription management process for helathcare professionals. The platform empowers doctors and meidcal practitioners to efficiently create, manage, and track patient prescritpions, enhancing patient care and medical recordkeeping. 
+**Key Features:**
+
+- **Intelligent Medication Search:** Our app features an intelligent medication search bar, allowing healthcare providers to quickly search and select medications using their names, dosages, or other keywords.
+  
+- **Comprehensive Patient Profiles:** The app centralizes patient information, offering a comprehensive view of medical history, allergies, current medications, and prescription records. This ensures informed medication decisions.
+  
+- **Simplified Prescription Creation:** The ePrescription App streamlines prescription creation by enabling healthcare providers to input patient details, medication information, dosages, and instructions with precision.
+  
+- **Effortless Prescription Management:** With an intuitive dashboard, healthcare professionals can easily manage, update, and monitor patient prescriptions, ensuring optimal medication management.
+  
+- **Rich Medication Information:** As healthcare providers search for medications, the app provides real-time information about each drug, including dosages, administration guidelines, potential interactions, and side effects.
+  
+- **Enhanced Patient Safety:** By minimizing the risk of medication errors, our app enhances patient safety and contributes to higher quality care.
+  
+- **User-Centric Interface:** Designed with healthcare professionals in mind, the app offers quick navigation, rapid search capabilities, and immediate access to critical patient data.
+  
+- **Data Security:** We prioritize patient data security. The app employs robust encryption and authentication measures to protect sensitive medical information.
+
+Experience the future of prescription management with the ePrescription App
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+### Available Scripts
 
 In the project directory, you can run:
 
-### `npm start`
+#### `npm start`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
@@ -14,12 +64,12 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
-### `npm test`
+#### `npm test`
 
 Launches the test runner in the interactive watch mode.\
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+#### `npm run build`
 
 Builds the app for production to the `build` folder.\
 It correctly bundles React in production mode and optimizes the build for the best performance.
@@ -29,7 +79,7 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+#### `npm run eject`
 
 **Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
@@ -39,32 +89,44 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
+### Learn More
 
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
+#### Code Splitting
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
+#### Analyzing the Bundle Size
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
+#### Making a Progressive Web App
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-### Advanced Configuration
+#### Advanced Configuration
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-### Deployment
+#### Deployment
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-### `npm run build` fails to minify
+#### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+## Acknowledgements
+I would like to thank my Per Scholas coding bootcamp for the assignment. 
+
+## Project Status
+The project status is active, and developement is in progress.
+
+## Contact Info
+- Website [Ayronada Smith](https://www.ayronada.com)
+- GitHub [@NadaSmith](https://github.com/NadaSmith)
+- LinkedIn [My LinkedIn](https://www.linkedin.com/in/ayronadasmith/)
+- Blog [Tech Blog](https://www.medium.com/@ayronada)
