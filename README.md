@@ -8,7 +8,7 @@
 
 ## Project Link
 
-<!-- Check out the [ePrescription App Demo](link here), a comprehensive solution for efficient prescription management.-->
+Check out the [ePrescription App ](https://nadasmith.github.io/ePrescription/), a comprehensive solution for efficient prescription management.
 
 <!-- TABLE OF CONTENTS -->
 
