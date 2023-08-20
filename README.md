@@ -27,7 +27,7 @@ Check out the [ePrescription App ](https://nadasmith.github.io/ePrescription/), 
 <!-- OVERVIEW -->
 
 ## About
-My ePrescription App is a modern and comprehensive web application designed to streamline the prescription management process for helathcare professionals. The platform empowers doctors and meidcal practitioners to efficiently create, manage, and track patient prescritpions, enhancing patient care and medical recordkeeping. 
+My ePrescription App is a modern and comprehensive web application designed to streamline the prescription management process for healthcare professionals. The platform empowers doctors and medical practitioners to efficiently create, manage, and track patient prescritpions, enhancing patient care and medical recordkeeping. 
 
 ## Features
 
