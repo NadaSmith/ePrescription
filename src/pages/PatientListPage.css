@@ -35,7 +35,7 @@
     width: 40%;
     height: 25px;
     margin-top: 1.5rem;
-    border: lightgray solid;
+    border: black solid;
 }
 
 .search-patient button {
@@ -80,14 +80,13 @@
 .patient-table {
     margin-top: 2em;
     width: 95%;
-    border-collapse: collapse;
     margin-left: 3rem;
     background-color: #386890;
 }
 
 
 .patient-table tr, .patient-table th, .patient-table td {
-    border: 1px solid lightgray;
+    border: 1px solid black;
     padding: 8px;
 }
 
@@ -97,7 +96,6 @@
 }
 
 .patient-table th {
-    background-color: white;
     font-weight: bolder;
     font-size: x-large;
 }
@@ -106,8 +104,12 @@
     background-color:bisque;
 }
 
-td button {
-    background-color: none;
+.view, .edit, .delete  {
+    border: #386890 solid;
+    border-radius: 15px;
+    background-color: orangered;
+    color: white;
+    margin-right: 3rem;
 }
 
 .patient-table th:nth-child(2),
@@ -168,6 +170,11 @@ td button {
     margin-top: -2rem;
 }
 
+.search-patient input {
+    border: solid black;
+}
+
+
 .input-container {
     display: flex;
     flex-direction: column;
@@ -191,4 +198,8 @@ td button {
 
 .name-input input, .age-input input, .gender-input input, .bday-input input {
     margin: auto;
+}
+
+.heading  {
+    background-color: lightgray;
 }

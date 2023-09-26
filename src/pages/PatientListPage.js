@@ -15,8 +15,90 @@ function PatientListPage() {
     const [age, setAge] = useState("");
     const [gender, setGender] = useState("");
     const [birthDate, setBirthDate] = useState("");
-    const [filteredPatientData, setFilteredPatientData] = useState([]);
+    const [isloading, setIsloading] = useState(true);
     const navigate = useNavigate();
+
+    // Function to fetch patient data from your backend API
+    const fetchPatientDataFromBackend = async () => {
+        try {
+            const response = await fetch("/api/patients");
+            if (!response.ok) {
+                throw new Error("Network response was not ok");
+            }
+            const data = await response.json();
+            setPatientData(data);
+        } catch (error) {
+            console.error("Error fetching patient data:", error);
+        } finally {
+            //after fetching, set isLoading to false
+            setIsloading(false);
+        }
+    };
+
+    useEffect(() => {
+        fetchPatientDataFromBackend();
+    }, []);
+
+    // Placeholder function to add a patient to your backend
+    const handleAddPatient = async (newPatient) => {
+        try {
+            
+            const response = await fetch("/api/patients", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(newPatient),
+            });
+            if (!response.ok) {
+                throw new Error("Failed to add patient");
+            }
+            // Fetch updated patient data after adding
+            fetchPatientDataFromBackend();
+            setIsFormVisible(false);
+        } catch (error) {
+            console.error("Error adding patient:", error);
+        }
+    };
+
+    // Placeholder function to edit a patient in your backend
+    const handleEditPatient = async (patientID, updatedData) => {
+        try {
+            
+            const response = await fetch(`/api/patients/${patientID}`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(updatedData),
+            });
+            if (!response.ok) {
+                throw new Error("Failed to edit patient");
+            }
+            // Fetch updated patient data after editing
+            fetchPatientDataFromBackend();
+            setIsFormVisible(false);
+        } catch (error) {
+            console.error("Error editing patient:", error);
+        }
+    };
+
+    // Placeholder function to delete a patient in your backend
+    const handleDeletePatient = async (patientId) => {
+        try {
+            // Replace with an actual API endpoint to delete a patient
+            const response = await fetch(`/api/patients/${patientId}`, {
+                method: "DELETE",
+            });
+            if (!response.ok) {
+                throw new Error("Failed to delete patient");
+            }
+            // Fetch updated patient data after deleting
+            fetchPatientDataFromBackend();
+        } catch (error) {
+            console.error("Error deleting patient:", error);
+        }
+    };
 
     //function to show the form in add mode
     const showAddForm = () => {
@@ -46,48 +128,15 @@ function PatientListPage() {
         setBirthDate('');
     };
 
-    // Function to fetch patient data from local storage during component mount
-    const fetchLocalPatientData = () => {
-    const storedData = localStorage.getItem("patientData");
-    if (storedData) {
-      return JSON.parse(storedData);
-    }
-    return [];
+    // Function to view patient details
+    const handleViewPatient = (patientID) => {
+        navigate(`/dashboardpage/${patientID}`);
     };
 
-    // Function to fetch patient data from the JSON file
-    const fetchPatientData = async () => {
-    try {
-      const response = await fetch("https://gist.githubusercontent.com/NadaSmith/377c51388ce91a7695592dc16f960509/raw/5f9039eedc6a6ed79abdf1554d92a8520d4bc769/PatientData.json");
-      console.log("Fetch Response:", response);
-
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-
-      const data = await response.json();
-      return data;
-    } catch (error) {
-      console.error("Error fetching patient data:", error);
-      return [];
-    }
-};
-
-    useEffect(() => {                                                               //useEffect hook runs when the component mounts; mounting includs reloading; causes table to populate 
-        const fetchData = async () => {                                                 //have to change the alert function to a modal or alert component so the page won't reload; then the useEffect won't be mounted again so it will not autopopulate the data in the chart
-            const dataFromJsonFile = await fetchPatientData();
-            console.log("Fetched data:", dataFromJsonFile)
-            if (dataFromJsonFile.length > 0) {
-                setPatientData(dataFromJsonFile);
-                localStorage.setItem("patientData", JSON.stringify(dataFromJsonFile));
-            } else {
-                const dataFromLocalStorage = fetchLocalPatientData();
-                setPatientData(dataFromLocalStorage);
-            }
-        }
-
-        fetchData();
-    }, []);
+    // // Function to edit patient details
+    // const handleEditPatient = (patient) => {
+    //     showEditForm(patient);
+    // };
 
     const handleSearch = async () => {
         //input value from search field
@@ -129,39 +178,6 @@ function PatientListPage() {
     };
       
 
-    //function to add a new patient from data
-    const handleAddPatient = (newPatient) => {
-        //assign a unique ID to the new pt object
-        const uniqueID = Math.random();
-        const newPatientWithID = { ...newPatient, id: uniqueID };
-
-        //add the new pt w/ unique ID to the patientData array
-        const updatedData = [...patientData, newPatientWithID];
-        
-        //save the updated patientData arry to local storage
-        setPatientData(updatedData);
-        localStorage.setItem("patientData", JSON.stringify(updatedData));
-        
-        setIsFormVisible(false);     //hide form after adding a new
-    };
-
-    //function to delete a patient from local storage
-    const handleDeletePatient = (patientId) => {
-        const updatedData = patientData.filter((patient) => patient.id !== patientId);
-        setPatientData(updatedData);
-        localStorage.setItem("patientData", JSON.stringify(updatedData));
-    }
-
-    // Function to handle editing a patient
-    const handleEditPatient = (patientID, newData) => {
-        const updatedData = patientData.map((patient) =>
-            patient.id === patientID ? { ...patient, ...newData } : patient
-        );
-        setPatientData(updatedData);
-        localStorage.setItem("patientData", JSON.stringify(updatedData));
-        setIsFormVisible(false);
-    };
-
     //function to handle clicking edit button
     const handleAddNewPatientClick = () => {
         setIsFormVisible(true);    //shows form when add new pt button is clicked
@@ -173,10 +189,6 @@ function PatientListPage() {
         setIsFormVisible(true);    //shows form when edit button is clicked
     };
 
-    function handleViewPatient(patientID) {
-        // Redirect to the dashboard page, pass the pt ID as a URL parameter
-        navigate(`/dashboardpage/${patientID}`);
-    }
     
     return (
         <div className="patient-list">
@@ -200,8 +212,8 @@ function PatientListPage() {
 
                 {/*place table with 5rows (Name, Age, Gender, Birth Date, row for button)*/}
                 <table className="patient-table">
-                    <thead>
-                        <tr>
+                    <thead >
+                        <tr className="heading">
                             <th>Name</th>
                             <th>Age</th>
                             <th>Gender</th>
@@ -218,7 +230,7 @@ function PatientListPage() {
                                 <td>{patient.age}</td>
                                 <td>{patient.gender}</td>
                                 <td>{patient.birthDate}</td>
-                                <td>
+                                <td className="last-btn">
                                     <button className="view" onClick={() => handleViewPatient(patient.id)}>View</button>
                                     <button className="edit" onClick={() => showEditForm(patient)}>Edit</button>
                                     <button className="delete" onClick={() => handleDeletePatient(patient.id)}>Delete</button>
